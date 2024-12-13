@@ -1,0 +1,15 @@
+/* Стиль для скрытого списка тегов */
+.tags {
+    margin-left: 20px;
+    display: none;  /* Сначала скрыто */
+}
+
+/* Стиль для заголовков категорий */
+h3 {
+    cursor: pointer;
+    color: #5c0a0a;
+}
+
+h3:hover {
+    text-decoration: underline;
+}

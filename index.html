@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orphyo - Song Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Подключаем PapaParse -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Orphyo</h1>
+        <p>Select tags and get music recommendations</p>
+    </header>
+
+    <main>
+        <section id="categories">
+            <h2>Choose categories and tags</h2>
+            
+            <div id="categories-container">
+                <!-- Здесь будут динамически добавляться категории с тегами -->
+            </div>
+        </section>
+
+        <section id="album">
+            <h2>Your music</h2>
+            <button id="generate">Generate</button>
+            <div id="album-list">
+                <!-- Сюда будут добавляться песни -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Orphyo</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
