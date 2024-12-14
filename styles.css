@@ -1,21 +1,91 @@
 /* Общие стили для body */
-body {
+html, body {
     margin: 0; /* Убираем внешние отступы */
     padding: 0; /* Убираем внутренние отступы */
-    height: 100vh; /* Высота экрана на всю страницу */
-    position: relative;
+    height: 100%; /* Высота на весь экран */
+    overflow: hidden; /* Предотвращаем скроллинг, если фон выходит за пределы */
 }
 
-/* чтобы картинка была прозрачной*/
+/* Стиль для фонового изображения с прозрачностью */
 body::before {
     content: '';
-    background: url('background.jpg') no-repeat center center/cover;
+    background: url('background.jpg') no-repeat center center; /* Центрирование фона */
+    background-size: cover; /* Масштабировать с сохранением пропорций */
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    transform: scaleY(1.1); /* Увеличиваем высоту на 10% */
     opacity: 0.83; /* Прозрачность только для фона */
     z-index: -1; /* Помещаем под содержимое страницы */
+    transform: scaleY(1.05); /* Лёгкое увеличение по высоте, если всё ещё нужно */
 }
+
+
+/* Стиль для текста ORPHYO */
+header h1 {
+    font-family: 'Castoro Titling', serif; /* Подключенный шрифт */
+    font-size: 50px; /* Размер шрифта */
+    color: #600200; /* Цвет текста */
+    text-align: center; /* Выравнивание по центру */
+    text-shadow: 0px 4px 4px rgba(58, 23, 23, 0.8); /* Тень */
+    margin: 60px; /* Отступ сверху, можно корректировать */
+}
+
+/* Стиль для описания */
+p.description {
+    color: #121212; /* Цвет текста */
+    font-family: 'Antic Didone', serif; /* Шрифт */
+    font-size: 17px; /* Меньший размер шрифта */
+    text-align: center; /* Выравнивание по центру */
+    margin-top: -60px; /* Отступ сверху */
+    font-weight: normal;
+}
+
+.choose-tag {
+    color: #121212; /* Цвет текста */
+    font-family: 'Antic Didone', serif; /* Шрифт */
+    font-size: 17px; /* Меньший размер шрифта */
+    text-align: center; /* Выравнивание по центру */
+    margin-top: 60px; /* Отступ сверху */
+    font-weight: normal;
+}
+
+
+/* Большой блок */
+.tags-container {
+    background-color: rgba(12, 12, 12, 0.6); /* Черный фон с прозрачностью */
+    border-radius: 11px; /* Скругленные углы */
+    position: fixed; /* Позиционируем относительно окна */
+    top: 62%; /* Центр по вертикали */
+    left: 50%; /* Центр по горизонтали */
+    width: 260px; /* Ширина */
+    height: 357px; /* Высота */
+    padding: 20px; /* Отступы внутри блока */
+    display: flex; /* Для расположения маленьких блоков по горизонтали */
+    flex-direction: column; /* Размещение блоков по вертикали */
+    gap: 10px; /* Расстояние между блоками */
+    transform: translate(-50%, -50%); /* Сдвигаем блок на 50% по обеим осям, чтобы точно отцентрировать */
+}
+
+
+/* Маленькие красные блоки для категорий */
+.tag-button {
+    background-color: #3A1717; /* Красный цвет */
+    opacity: 0.83; /* Прозрачность */
+    border-radius: 0; /* Без скругленных углов */
+    padding: 10px 20px; /* Отступы внутри блоков */
+    color: #E6E6E6; /* Цвет текста */
+    font-family: 'Antic Didone', serif; /* Шрифт */
+    font-size: 15px; /* Размер шрифта */
+    text-align: center; /* Текст по центру */
+    cursor: pointer; /* Курсор при наведении */
+}
+
+/* Чтобы каждый следующий блок был ниже предыдущего */
+.tag-button:nth-child(n+2) {
+    margin-top: 10px;
+}
+
+
+

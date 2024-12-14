@@ -5,25 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orphyo - Song Generator</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Подключаем шрифты -->
+    <link href="https://fonts.googleapis.com/css2?family=Castoro+Titling&family=Antic+Didone&display=swap" rel="stylesheet">
     <!-- Подключаем PapaParse -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 </head>
 <body>
     <header>
         <h1>Orphyo</h1>
-        <p>Select tags and get music recommendations</p>
+        <p class="description">discover your uniquely perfect<br>
+            soundtrack</p>
     </header>
 
-    
     <main>
+        <!-- Надпись "Choose your tag" -->
+        <h2 class="choose-tag">Choose your tag</h2> <!-- Добавлен класс для стиля -->
+
+        <!-- Блок с тегами -->
+        <div class="tags-container">
+            <button class="tag-button">genres</button>
+            <button class="tag-button">mood</button>
+            <button class="tag-button">activities</button>
+            <button class="tag-button">instruments</button>
+            <button class="tag-button">eras</button>
+            <button class="tag-button">languages</button>
+        </div>
+
+        <!-- Новый раздел с динамическими категориями и тегами -->
         <section id="categories">
-            <h2>Choose categories and tags</h2>
-            
             <div id="categories-container">
                 <!-- Здесь будут динамически добавляться категории с тегами -->
             </div>
         </section>
 
+        <!-- Раздел с альбомом -->
         <section id="album">
             <h2>Your music</h2>
             <button id="generate">Generate</button>
@@ -34,7 +49,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2024 Orphyo</p>
+        <p></p> <!--&copy; 2024 Orphyo -->
     </footer>
 
     <script src="script.js"></script>
