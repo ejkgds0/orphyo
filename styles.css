@@ -1,15 +1,21 @@
-/* Стиль для скрытого списка тегов */
-.tags {
-    margin-left: 20px;
-    display: none;  /* Сначала скрыто */
+/* Общие стили для body */
+body {
+    margin: 0; /* Убираем внешние отступы */
+    padding: 0; /* Убираем внутренние отступы */
+    height: 100vh; /* Высота экрана на всю страницу */
+    position: relative;
 }
 
-/* Стиль для заголовков категорий */
-h3 {
-    cursor: pointer;
-    color: #5c0a0a;
-}
-
-h3:hover {
-    text-decoration: underline;
+/* чтобы картинка была прозрачной*/
+body::before {
+    content: '';
+    background: url('background.jpg') no-repeat center center/cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: scaleY(1.01); /* Увеличиваем высоту на 10% */
+    opacity: 0.93; /* Прозрачность только для фона */
+    z-index: -1; /* Помещаем под содержимое страницы */
 }
