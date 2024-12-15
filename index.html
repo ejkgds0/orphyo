@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,11 +11,11 @@
     <!-- Подключаем PapaParse -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 </head>
+
 <body>
     <header>
         <h1>Orphyo</h1>
-        <p class="description">discover your uniquely perfect<br>
-            soundtrack</p>
+        <p class="description">discover your uniquely perfect<br> soundtrack</p>
     </header>
 
     <main>
@@ -23,35 +24,34 @@
 
         <!-- Блок с тегами -->
         <div class="tags-container">
-            <button class="tag-button">genres</button>
-            <button class="tag-button">mood</button>
-            <button class="tag-button">activities</button>
-            <button class="tag-button">instruments</button>
-            <button class="tag-button">eras</button>
-            <button class="tag-button">languages</button>
+            <button class="tag-button" onclick="toggleCategoryWindow('Genres')">Genres</button>
+            <button class="tag-button" onclick="toggleCategoryWindow('Mood')">Mood</button>
+            <button class="tag-button" onclick="toggleCategoryWindow('Activities')">Activities</button>
+            <button class="tag-button" onclick="toggleCategoryWindow('Instruments')">Instruments</button>
+            <button class="tag-button" onclick="toggleCategoryWindow('Eras')">Eras</button>
+            <button class="tag-button" onclick="toggleCategoryWindow('Languages')">Languages</button>
         </div>
 
-        <!-- Новый раздел с динамическими категориями и тегами -->
-        <section id="categories">
-            <div id="categories-container">
-                <!-- Здесь будут динамически добавляться категории с тегами -->
+        <!-- Окно с тегами категории -->
+        <div id="categoryWindow" class="category-window" style="display:none;">
+            <div id="categoryContent" class="category-content">
+                <!-- Сюда будут динамически добавляться теги для выбранной категории -->
             </div>
-        </section>
+            <!--<button onclick="closeCategoryWindow()">close</button>-->
+        </div>
 
         <!-- Раздел с альбомом -->
         <section id="album">
-            <h2>Your music</h2>
-            <button id="generate">Generate</button>
-            <div id="album-list">
-                <!-- Сюда будут добавляться песни -->
-            </div>
+            <!-- Ссылка на вторую страницу с результатами -->
+            <a id="generate" href="generate-album.html">Generate Album</a>
         </section>
     </main>
 
     <footer>
-        <p></p> <!--&copy; 2024 Orphyo -->
+        <!--<p>&copy; 2024 Orphyo</p>-->
     </footer>
 
     <script src="script.js"></script>
 </body>
+
 </html>

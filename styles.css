@@ -21,7 +21,7 @@ body::before {
     transform: scaleY(1.05); /* Лёгкое увеличение по высоте, если всё ещё нужно */
 }
 
-
+/* ==== Тексты ==== */
 /* Стиль для текста ORPHYO */
 header h1 {
     font-family: 'Castoro Titling', serif; /* Подключенный шрифт */
@@ -52,6 +52,7 @@ p.description {
 }
 
 
+/* ==== Блоки ==== */
 /* Большой блок */
 .tags-container {
     background-color: rgba(12, 12, 12, 0.6); /* Черный фон с прозрачностью */
@@ -67,7 +68,6 @@ p.description {
     gap: 10px; /* Расстояние между блоками */
     transform: translate(-50%, -50%); /* Сдвигаем блок на 50% по обеим осям, чтобы точно отцентрировать */
 }
-
 
 /* Маленькие красные блоки для категорий */
 .tag-button {
@@ -87,5 +87,115 @@ p.description {
     margin-top: 10px;
 }
 
+/* Когда кнопка выбрана (при нажатии) */
+.tag-button.selected {
+    background-color: #600200; /* Меняем цвет на #600200 при клике */
+    opacity: 1;
+    transition: background-color 0.3s ease;
+}
 
 
+/* ==== Штуки с модальным окном ==== */
+/* Модальное окно для категории */
+.category-window {
+    position: fixed;
+    top: 34.5%;
+    left: 60.5%;
+    background-color: #600200;
+    border: 2px solid #600200;
+    padding: 20px;
+    width: 130px;
+    height: 357px;
+    overflow-y: auto;  /* Прокрутка, если тегов больше */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: none; /* Изначально скрыто */
+    border-radius: 11px; /* Скругленные углы */
+    font-family: 'Antic Didone', serif; /* Шрифт */
+    letter-spacing: 3%; /* Расстояние между буквами */
+}
+
+/* Стиль для контейнера с тегом */
+.category-content .tags {
+    display: inline-flex; /* Располагает чекбокс и текст в одну строку */
+    align-items: center; /* Выравнивает чекбокс и текст по вертикали */
+    margin-bottom: 7px; /* Отступ снизу между тегами */
+    margin-left: 0; /* Убираем отступ слева */
+    padding-left: 5px;
+    width: 100%; /* Заставляем контейнер занимать всю ширину */
+    justify-content: flex-start; /* Выравниваем элементы по левому краю */
+}
+/* Стиль для каждого тега */
+.category-content .tags label {
+    margin-left: 5px; /* Отступ между чекбоксом и текстом */
+    font-family: 'Antic Didone', serif;
+    font-size: 13px;
+    color: #E6E6E6; /* Цвет текста по умолчанию */
+}
+
+/* Стиль для чекбоксов */
+.category-content .tags input[type="checkbox"] {
+    margin-right: 10px;
+    border: 2px solid #E6E6E6; /* Стандартная рамка */
+    accent-color: #600200; /* Цвет чекбокса по умолчанию */
+}
+/* Стиль для чекбокса при наведении */
+.category-content .tags input[type="checkbox"]:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+/* Стиль для активных (выбранных) чекбоксов */
+.category-content .tags input[type="checkbox"]:checked {
+    background-color: #600200; /* Цвет фона для выбранного чекбокса */
+    border-color: #3A1717; /* Цвет рамки при выборе */
+    accent-color: #3A1717; /* Цвет самого чекбокса при выборе */
+}
+
+
+/* Стиль для кнопки закрытия окна */
+button {
+    background-color: #600200;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #600200;
+}
+
+
+/* Стили для кнопки "Generate" */
+#generate {
+    background-color: #600200; /* Устанавливаем красный фон */
+    border: none; /* Убираем бордер, если он есть */
+    color: white; /* Белый цвет текста */
+    font-family: 'Antic Didone', serif; /* Шрифт */
+    font-size: 18px; /* Размер шрифта */
+    padding: 10px 20px; /* Отступы внутри кнопки */
+    border-radius: 11px; /* Скругленные углы */
+    cursor: pointer; /* Курсор в виде руки */
+}
+
+
+
+
+/* Стиль для кнопки закрытия окна */
+.category-window button {
+    background-color: #600200;  /* Красный фон */
+    color: white;               /* Белый цвет текста */
+    padding: 10px 20px;         /* Отступы внутри кнопки */
+    border: none;               /* Убираем границу */
+    border-radius: 5px;         /* Скругленные углы */
+    cursor: pointer;           /* Курсор в виде руки */
+    font-size: 16px;            /* Размер шрифта */
+    width: 100%;                /* Ширина кнопки на всю ширину */
+    margin-top: 20px;           /* Отступ сверху */
+}
+
+.category-window button:hover {
+    background-color: #3A1717;  /* Темный красный при наведении */
+}
