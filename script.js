@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     loadCSVData();  // Загружаем данные после загрузки страницы
+    loadSelectedTags();  // Загрузка выбранных тегов из localStorage
 });
 
 let df = [];  // Глобальная переменная для данных из CSV
@@ -93,5 +94,9 @@ function handleCheckboxChange(tag, isChecked) {
     } else {
         selectedTags.delete(tag);
     }
-    console.log("\u0412\u044b\u0431\u0440\u0430\u043d\u043d\u044b\u0435 теги:", Array.from(selectedTags));
+
+    // Сохраняем выбранные теги в localStorage
+    localStorage.setItem('selectedTags', JSON.stringify(Array.from(selectedTags)));
+    console.log("Выбранные теги:", Array.from(selectedTags));
 }
+

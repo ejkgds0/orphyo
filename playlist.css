@@ -1,0 +1,182 @@
+/* Общие стили для body и html */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden; /* Отключаем прокрутку */
+}
+
+
+/* Фон страницы */
+body {
+    background-color: #464646; /* Фон страницы */
+    overflow: hidden; /* Запрещаем прокрутку */
+    position: relative;
+}
+
+
+/* Фоновое изображение */
+body::before {
+    content: '';
+    background: url('playlist.jpg') no-repeat left center;
+    background-size: contain; /* Сохраняет соотношение сторон изображения */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Заполняем весь экран по ширине */
+    height: 100%; /* Заполняем весь экран по высоте */
+    z-index: -1; /* Помещаем изображение за содержимое страницы */
+    opacity: 0.93;
+}
+
+/* ==== Заголовок блока ==== */
+/* Основной контейнер с содержимым */
+.main-content {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Устанавливаем высоту на весь экран */
+}
+
+
+/* Контейнер с надписью "Your Playlist" */
+.your-playlist-container {
+    background-color: #3A1717; /* Красный цвет */
+    border-radius: 11px 11px 0 0; /* Скругленные углы сверху */
+    border: 3px solid #3a1717;
+    padding: 10px 20px; /* Отступы */
+    box-shadow: 4px 0px 8px rgba(58, 23, 23, 0.9); /* Тень во все 4 стороны */
+    
+    /* Позиционирование блока */
+    position: absolute; /* Позиционирование относительно экрана */
+    top: 10%; /* Сдвигаем блок вниз */
+    left: 50%; /* Сдвигаем блок вправо */
+    
+    /* Устанавливаем размеры в процентах */
+    width: 17%; /* Ширина */
+    height: 5%; /* Высота */
+
+    /* Для выравнивания текста по нижней грани блока */
+    display: flex;
+    flex-direction: column; /* Оставляем элементы внутри блока по вертикали */
+    justify-content: flex-end; /* Размещаем текст внизу блока */
+    z-index: 10;
+}
+
+/* Текст внутри */
+.your-playlist {
+    color: #E6E6E6; /* Цвет текста */
+    font-family: 'Antic Didone', serif; /* Шрифт */
+    font-size: 21px; /* Размер шрифта в пикселях */
+    text-align: center; /* Текст по центру */
+    margin: 0; /* Убираем отступы вокруг текста */
+}
+
+
+/* ==== Блок с песнями ==== */
+.song-container {
+    position: relative;
+    background-color: #e6e6e6; /* Цвет фона */
+    border: 3px solid #3a1717;
+    box-shadow: 4px 4px 8px rgba(58, 23, 23, 0.9);
+    border-radius: 0 0 11px 11px;
+    
+    position: absolute; /* Позиционируем относительно .main-wrapper */
+    top: 18%; /* Сдвигаем вниз */
+    left: 60%; /* Центрируем по горизонтали */
+    transform: translateX(-50%); /* Выравниваем по центру */
+    
+    width: 17%; /* Ширина */
+    height: 63%; /* Высота */
+    padding: 20px;
+
+    overflow: auto; /* Прокрутка для содержимого */
+
+    /* Flexbox для выравнивания песен */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрируем элементы по горизонтали */
+    justify-content: flex-start; /* Размещаем элементы сверху */
+}
+
+/* Список песен */
+.songs {
+    list-style-type: none; /* Убираем маркеры у списка */
+    padding: 0; /* Убираем отступы списка */
+    margin: 0; /* Убираем внешние отступы */
+    line-height: 1; /* Высота строки (уменьшает/увеличивает расстояние между строками) */
+    letter-spacing: 0.05em; /* Увеличиваем или уменьшаем расстояние между буквами */
+    text-align: center; /* Центрируем весь текст в списке */
+}
+
+/* Элементы песен */
+.song-item {
+    font-family: 'Antic Didone', serif; /* Шрифт */
+    font-size: 15px; /* Размер шрифта */
+    color: #121212; /* Цвет текста */
+    margin-bottom: 5px; /* Отступ между песнями */
+    padding: 10px 0; /* Отступы внутри элемента */
+    display: flex; /* Используем flex для расположения внутри песни */
+    flex-direction: column; /* Элементы будут располагаться по вертикали */
+}
+
+/* Элементы внутри песни (название, исполнитель, длительность) */
+.song-item h4, .song-item p {
+    margin: 5px 0; /* Добавляем немного отступов между элементами */
+}
+/* Для выравнивания названия, исполнителя и длительности на одной линии */
+.song-item .song-info {
+    display: flex;
+    align-items: center; /* Центрируем элементы по вертикали */
+    justify-content: flex-start; /* Размещаем элементы по левому краю */
+}
+/* Чтобы элементы внутри song-info не переполняли друг друга */
+.song-item .song-info p {
+    margin-right: 10px; /* Добавляем отступ между исполнителем, названием и длительностью */
+}
+
+/* Ссылки в названиях песен */
+.songs li a {
+    color: #121212; /* Исходный цвет ссылок */
+    text-decoration: none; /* Убираем подчеркивание */
+    transition: color 0.3s ease; /* Плавный переход для цвета текста */
+}
+/* При наведении на ссылку (название песни) */
+.songs li a:hover {
+    color: #600200; /* Цвет текста при наведении */
+    text-decoration: underline; /* Подчеркивание при наведении */
+}
+
+
+/* ==== Кнопка назад ==== */
+/* Контейнер для кнопки возврата */
+.go-back {
+    position: absolute; /* Абсолютное позиционирование */
+    bottom: 7%; /* Отступ снизу от контейнера с песнями */
+    left: 60%; /* Центрируем по горизонтали */
+    transform: translateX(-50%); /* Сдвигаем элемент влево на 50% ширины */
+    text-align: center; /* Выравнивание текста по центру */
+}
+
+/* Ссылка, которая выглядит как кнопка */
+.go-back a {
+    font-family: 'Castoro Titling', serif; /* Шрифт */
+    font-size: 18px; /* Размер шрифта */
+    color: #e6e6e6; /* Цвет текста */
+    text-decoration: none; /* Убираем стандартное подчеркивание */
+    border-bottom: 2px solid #e6e6e6; /* Нижнее подчеркивание */
+    padding-bottom: 5px; /* Отступ снизу, чтобы подчеркнуть не касалось текста */
+    transition: color 0.3s ease, border-color 0.3s ease; /* Плавный переход */
+}
+
+/* При наведении на ссылку */
+.go-back a:hover {
+    color: #600200; /* Цвет текста при наведении */
+    border-color: #600200; /* Цвет нижнего подчеркивания при наведении */
+}
+
+
+
+
+
+

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Playlist</title>
+    <link rel="stylesheet" href="playlist.css">
+    <link href="https://fonts.googleapis.com/css2?family=Castoro+Titling&family=Antic+Didone&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Основной контейнер -->
+    <div class="main-content">
+        <!-- Заголовок блока -->
+        <div class="your-playlist-container">
+            <p class="your-playlist">Your playlist</p>
+        </div>
+
+        <!-- Блок с песнями -->
+        <div class="song-container">
+            <ul class="songs" id="album-list">
+                <!-- Список песен будет генерироваться динамически через JS -->
+                <li>Loading...</li>
+            </ul>
+        </div>
+
+        <!-- Кнопка возврата -->
+        <div class="go-back">
+            <a href="index.html">GO BACK</a>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script src="playlist.js"></script>
+</body>
+</html>
