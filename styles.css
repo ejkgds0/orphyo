@@ -7,6 +7,7 @@ html, body {
     overflow: hidden; /* Предотвращаем скроллинг, если фон выходит за пределы */
 }
 
+
 /* Стиль для фонового изображения с прозрачностью */
 body::before {
     content: '';
@@ -193,9 +194,3 @@ a {
     cursor: not-allowed;
     pointer-events: none;
 }
-
-
-
-
-
-

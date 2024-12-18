@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 let df = [];  // Глобальная переменная для данных из CSV
 let categories = {};  // Глобальная переменная для категорий и тегов
-let selectedTagCount = 0;  // Счётчик выбранных тегов
+let selectedTags = new Set();  // Набор для хранения выбранных тегов
 
 // Функция для загрузки CSV
 function loadCSVData() {
@@ -13,12 +13,12 @@ function loadCSVData() {
         header: true,
         dynamicTyping: true,
         complete: function(results) {
-            console.log("Загруженные данные:", results.data);
+            console.log("\u0417\u0430\u0433\u0440\u0443\u0436\u0435\u043d\u043d\u044b\u0435 \u0434\u0430\u043d\u043d\u044b\u0435:", results.data);
             df = results.data;  // Сохраняем данные
             processData(df);
         },
         error: function(error) {
-            console.error("Ошибка при загрузке CSV:", error);
+            console.error("\u041e\u0448\u0438\u0431\u043a\u0430 \u043f\u0440\u0438 \u0437\u0430\u0433\u0440\u0443\u0437\u043a\u0435 CSV:", error);
         }
     });
 }
@@ -38,59 +38,60 @@ function processData(data) {
         }
     });
 
-    console.log("Группировка категорий завершена:", categories);
+    console.log("\u0413\u0440\u0443\u043f\u043f\u0438\u0440\u043e\u0432\u043a\u0430 \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0439 \u0437\u0430\u0432\u0435\u0440\u0448\u0435\u043d\u0430:", categories);
 }
 
 // Открытие/закрытие окна с тегами для выбранной категории
 function toggleCategoryWindow(category) {
     const categoryWindow = document.getElementById('categoryWindow');
     const categoryContent = document.getElementById('categoryContent');
-    
-    // Если окно открыто, проверяем, был ли уже выбран этот category
-    if (categoryWindow.style.display === 'block' && categoryContent.getAttribute('data-category') === category) {
-        // Если окно открыто и выбрана та же категория, скрываем окно
-        categoryWindow.style.display = 'none';
-        categoryContent.innerHTML = ''; // Очищаем контейнер
-        categoryContent.removeAttribute('data-category'); // Убираем атрибут категории
-    } else {
-        // Если окно скрыто или выбрана новая категория, показываем окно
-        categoryWindow.style.display = 'block';
-        categoryContent.innerHTML = '';  // Очищаем контейнер с тегами
-        categoryContent.setAttribute('data-category', category); // Сохраняем текущую категорию
 
-        // Добавляем чекбоксы для выбранной категории
+    if (categoryWindow.style.display === 'block' && categoryContent.getAttribute('data-category') === category) {
+        categoryWindow.style.display = 'none';
+        categoryContent.innerHTML = '';
+        categoryContent.removeAttribute('data-category');
+    } else {
+        categoryWindow.style.display = 'block';
+        categoryContent.innerHTML = '';
+        categoryContent.setAttribute('data-category', category);
+
         categories[category].forEach(tag => {
             const tagDiv = document.createElement('div');
             tagDiv.classList.add('tags');
-            
+
             const checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
             checkbox.id = tag;
             checkbox.classList.add('tag-checkbox');
-            
+            checkbox.checked = selectedTags.has(tag); // Восстанавливаем состояние
+
+            checkbox.addEventListener('change', function () {
+                handleCheckboxChange(tag, this.checked);
+            });
+
             const label = document.createElement('label');
             label.setAttribute('for', tag);
             label.textContent = tag;
-            
-            // Добавляем обработчик для отслеживания выбора чекбоксов
-            checkbox.addEventListener('change', handleCheckboxChange);
 
             tagDiv.appendChild(checkbox);
             tagDiv.appendChild(label);
-            
+
             categoryContent.appendChild(tagDiv);
         });
     }
 }
 
-// Функция для обработки изменения состояния чекбоксов
-function handleCheckboxChange() {
-    const checkedCheckboxes = document.querySelectorAll('.tag-checkbox:checked');
-    
-    if (checkedCheckboxes.length > 5) {
-        alert("Sorry, you may select only up to 5 tags <3");
-        // Снимаем последний отмеченный чекбокс, если их больше 5
-        this.checked = false;
+// Функция для обработки состояния чекбоксов
+function handleCheckboxChange(tag, isChecked) {
+    if (isChecked) {
+        if (selectedTags.size >= 5) {
+            alert("Sorry, you may select only up to 5 tags <3");
+            document.getElementById(tag).checked = false;
+            return;
+        }
+        selectedTags.add(tag);
+    } else {
+        selectedTags.delete(tag);
     }
+    console.log("\u0412\u044b\u0431\u0440\u0430\u043d\u043d\u044b\u0435 теги:", Array.from(selectedTags));
 }
-
