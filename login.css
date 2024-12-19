@@ -1,0 +1,190 @@
+/* Общие стили для body */
+html, body {
+    margin: 0; /* Убираем внешние отступы */
+    padding: 0; /* Убираем внутренние отступы */
+    height: 100%; /* Высота на весь экран */
+    font-size: 16px;
+    overflow: hidden; /* Предотвращаем скроллинг, если фон выходит за пределы */
+}
+
+/* Стиль для фонового изображения с красным слоем */
+body::before {
+    content: ''; /* Создаем псевдоэлемент */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('back_log.jpg') no-repeat center center; /* Центрирование фонового изображения */
+    background-size: cover; /* Масштабируем с сохранением пропорций */
+    z-index: -2; /* Отправляем изображение на задний план */
+}
+
+body::after {
+    content: ''; /* Создаем второй псевдоэлемент */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(58, 23, 23, 0.5); /* Полупрозрачный красный слой */
+    z-index: -1; /* Наложение слоя поверх изображения */
+}
+
+
+/* ==== Ячейки ==== */
+/* Контейнер формы */
+form {
+    display: flex; /* Включаем Flexbox */
+    flex-direction: column; /* Располагаем элементы в столбик */
+    align-items: center; /* Выравниваем элементы по центру */
+    width: 100%; /* Полная ширина формы */
+    max-width: 400px; /* Ограничиваем максимальную ширину формы */
+    margin: 0 auto; /* Центрируем форму по горизонтали */
+    margin-top: 23%; /* Отступ от верха*/
+    
+}
+
+/* Стили для полей ввода (email и password) */
+#login-email,
+#login-password,
+#signup-username,
+#signup-email,
+#signup-password {
+    width: 80%; /* ширина */
+    padding: 8px; /* Отступы внутри полей */
+    margin: 8px 0; /* Отступы между полями */
+    border: 0px solid rgba(255, 255, 255, 0.6); /* Полупрозрачная белая рамка */
+    background-color: rgba(255, 255, 255, 0.2); /* Прозрачный белый фон */
+    color: white; /* Белый текст */
+    font-size: 16px; /* Размер шрифта */
+    font-family: 'Antic Didone', serif;
+    outline: none; /* Убираем обводку при фокусе */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Легкая тень */
+    transition: all 0.3s ease; /* Плавность переходов */
+}
+
+/* Эффект при наведении */
+#login-email:hover,
+#login-password:hover,
+#signup-username:hover,
+#signup-email:hover,
+#signup-password:hover {
+    background-color: rgba(255, 255, 255, 0.3); /* Ярче фон при наведении */
+}
+/* Эффект при фокусе */
+#login-email:focus,
+#login-password:focus,
+#signup-username:focus,
+#signup-email:focus,
+#signup-password:focus {
+    background-color: rgba(255, 255, 255, 0.4); /* Еще ярче фон при фокусе */
+    border-color: white; /* Белая рамка */
+}
+
+/* ==== LOGIN КНОПКА ==== */
+/* Кнопка отправки формы */
+button[type="submit"] {
+    width: 30%;
+    padding: 8px; /* Внутренние отступы */
+    background-color: #121212;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+
+    color: white; /* Белый текст */
+    font-size: 16px; /* Размер текста */
+    font-family: 'Castoro Titling', serif; /* Шрифт для кнопки */
+    border: none; /* Убираем рамку */
+    cursor: pointer; /* Указатель при наведении */
+    transition: background-color 0.3s ease; /* Плавный переход фона */
+    margin-left: 54%;
+}
+
+/* Эффект наведения на кнопку */
+button[type="submit"]:hover {
+    background-color: rgba(58, 23, 23, 1); /* Более яркий цвет */
+}
+
+
+/* ==== SIGN UP КНОПКА ==== */
+/* сама кнопка */
+/* ==== Текст и кнопка SIGN UP ==== */
+.signup-wrapper {
+    position: absolute;
+    top: 20px; /* Отступ сверху */
+    right: 20px; /* Отступ справа */
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Расстояние между текстом и кнопкой */
+    font-family: 'Antic Didone', serif;
+}
+
+.signup-text {
+    color: white;
+    font-size: 18px;
+    opacity: 0.8;
+}
+
+.toggle-link {
+    padding: 10px 20px;
+    background-color: #3A1212;
+    color: white;
+    font-size: 16px;
+    font-family: 'Castoro Titling', serif;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Эффект при наведении */
+.toggle-link:hover {
+    background-color: #121212;
+    transform: scale(1.05);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==== Кнопка иконка ==== */
+/* Стили */
+.icon-button {
+    position: fixed; /* Располагаем кнопку поверх контента */
+    top: 3%; /* Отступ сверху */
+    left: 50%; /* Центрируем между рожками 52.5 */
+    transform: translateX(-50%); /* Сдвигаем кнопку влево на половину её ширины, чтобы точно центрировать */
+    width: 50px; /* Ширина кнопки */
+    height: 50px; /* Высота кнопки */
+    z-index: 100; /* Устанавливаем высокий приоритет по слоям */
+    pointer-events: auto; /* Разрешаем взаимодействие с кнопкой */
+}
+
+.icon-button img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Сохраняем пропорции изображения */
+    border-radius: 50%; /* Закругляем края изображения */
+    box-shadow: 0px 0.25rem 0.25rem rgba(0, 0, 0, 0.5); /* Добавляем тень */
+}
+
+.icon-button:hover img {
+    opacity: 0.8; /* Меняем прозрачность при наведении */
+    transform: scale(1.1); /* Увеличиваем иконку */
+    transition: 0.3s ease; /* Плавность анимации */
+}

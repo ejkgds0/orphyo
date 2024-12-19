@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Подключаем CSS файл для стилей -->
+    <link rel="stylesheet" href="login.css">
+    <!-- Подключаем шрифты -->
+    <link href="https://fonts.googleapis.com/css2?family=Castoro+Titling&family=Antic+Didone&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Кнопка-иконка -->
+    <a href="index.html" class="icon-button">
+        <img src="swords2.png" alt="Go back">
+    </a>
+
+
+    <!-- Контейнер для формы входа -->
+    <div class="container" id="login-container">
+        
+        <!-- Форма входа -->
+        <form id="login-form" action="/login" method="POST">
+            <input type="email" id="login-email" name="email" placeholder="Enter your email" required>
+            <input type="password" id="login-password" name="password" placeholder="Enter your password" required>
+            
+            <!--
+            <div>-->
+                <!-- Чекбокс "Запомнить меня" --> <!--
+                <input type="checkbox" id="remember-me">
+                <label for="remember-me">Remember me</label>
+            </div> -->
+
+            <!-- Кнопка отправки формы -->
+            <button type="submit">LOGIN</button>
+        </form>
+
+        <!-- Ссылка для переключения на форму регистрации -->
+        <div class="signup-wrapper">
+            <span class="signup-text">Not a member?</span>
+            <a href="#" class="toggle-link" onclick="showSignup()">SIGN UP</a>
+        </div>
+    </div>
+
+    <!-- Контейнер для формы регистрации -->
+    <div class="container" id="signup-container" style="display: none;">
+
+        <!-- Форма регистрации -->
+        <form id="signup-form" action="/signup" method="POST">
+
+            <input type="text" id="signup-username" name="username" placeholder="Choose a username" required>
+            <input type="email" id="signup-email" name="email" placeholder="Enter your email" required>
+            <input type="password" id="signup-password" name="password" placeholder="Create a password" required>
+
+            <!-- Кнопка отправки формы -->
+            <button type="submit">SIGN UP</button>
+        </form>
+
+        <!-- Ссылка для переключения на форму входа -->
+        <a href="#" class="toggle-link" onclick="showLogin()">GO BACK</a>
+    </div>
+
+    <!-- Подключаем JavaScript файл -->
+    <script src="login.js"></script>
+</body>
+</html>
