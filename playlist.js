@@ -82,11 +82,6 @@ function displayAlbum(tracks) {
     const albumList = document.getElementById('album-list');
     albumList.innerHTML = ''; // Очищаем текущий список
 
-    if (tracks.length === 0) {
-        albumList.innerHTML = 'No tracks found with the selected tags.';
-        return;
-    }
-
     tracks.forEach(track => {
         const songItem = document.createElement('li');
         songItem.classList.add('song-item');  // Применяем стиль из CSS
@@ -114,8 +109,47 @@ function displayAlbum(tracks) {
         songItem.appendChild(artistName);
         songItem.appendChild(trackDuration);
 
+        // Навешиваем обработчики событий для отображения тегов
+        songItem.addEventListener('mouseenter', function() {
+            showTags(track, songItem);
+        });
+        songItem.addEventListener('mouseleave', hideTags);
+
         albumList.appendChild(songItem);  // Добавляем songItem в albumList
     });
+}
+
+
+// Функция для отображения тегов
+function showTags(track, songItem) {
+    const tagPopup = document.getElementById('tag-popup');
+    const tagList = document.getElementById('tag-list');
+
+    // Очищаем список тегов
+    tagList.innerHTML = '';
+
+    // Добавляем тег, относящийся к песне
+    if (track.tag) {
+        const listItem = document.createElement('li');
+        listItem.textContent = track.tag;
+        tagList.appendChild(listItem);
+    } else {
+        const noTagsItem = document.createElement('li');
+        noTagsItem.textContent = 'No tags available';
+        tagList.appendChild(noTagsItem);
+    }
+
+    // Отображаем всплывающее окно с тегами
+    const rect = songItem.getBoundingClientRect();
+    tagPopup.style.top = `${rect.top + window.scrollY}px`; // Учитываем прокрутку страницы
+    tagPopup.style.left = `${rect.right + 5}px`; // Сдвигаем немного вправо
+    tagPopup.style.display = 'block';
+}
+
+// Скрыть теги при уходе курсора
+function hideTags() {
+    const tagPopup = document.getElementById('tag-popup');
+    tagPopup.style.display = 'none';
 }
 
 // Функция для загрузки выбранных тегов из localStorage

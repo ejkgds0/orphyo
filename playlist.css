@@ -175,8 +175,35 @@ body::before {
     border-color: #600200; /* Цвет нижнего подчеркивания при наведении */
 }
 
+/* ==== Окно с тегами ==== */
+/* Всплывающее окно */
+.tag-popup {
+    position: absolute;
+    top: 0;
+    left: 100%; /* Позиционирование справа от .song-container */
+    background-color: rgba(58, 23, 23, 0.9);
+    color: #e6e6e6;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    justify-content: center; /* Центрируем по горизонтали */
+    align-items: center; /* Центрируем по вертикали */
+    text-align: center; /* Выровнять текст внутри */
+    display: none; /* Изначально скрыто */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+    width: 5%;
+    z-index: 10; /* Убедитесь, что окно поверх всего */
+}
 
+/* Стили для списка тегов в всплывающем окне */
+#tag-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 
-
-
-
+#tag-list li {
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-family: 'Antic Didone', sans-serif;
+}
