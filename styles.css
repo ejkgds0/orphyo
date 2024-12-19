@@ -31,7 +31,7 @@ header h1 {
     color: #600200; /* Цвет текста */
     text-align: center; /* Выравнивание по центру */
     text-shadow: 0px 0.25rem 0.25rem rgba(58, 23, 23, 0.8); /* Тень */
-    margin: 3.125rem; /* Отступ сверху */
+    margin: 3.30%; /* Отступ сверху */
 }
 
 /* Стиль для описания */
@@ -40,7 +40,7 @@ p.description {
     font-family: 'Antic Didone', serif; /* Шрифт */
     font-size: 1.125rem; /* Меньший размер шрифта */
     text-align: center; /* Выравнивание по центру */
-    margin-top: -3.9375rem; /* Отступ сверху */
+    margin-top: -3.92%; /* Отступ сверху */
     font-weight: normal;
 }
 
@@ -49,7 +49,7 @@ p.description {
     font-family: 'Antic Didone', serif; /* Шрифт */
     font-size: 1.0625rem; /* Меньший размер шрифта */
     text-align: center; /* Выравнивание по центру */
-    margin-top: 3.125rem; /* Отступ сверху */
+    margin-top: 3.30%; /* Отступ сверху */
     font-weight: normal;
 }
 
@@ -62,12 +62,12 @@ p.description {
     position: fixed; /* Позиционируем относительно окна */
     top: 58%; /* Центр по вертикали */
     left: 50%; /* Центр по горизонтали */
-    width: 14.375rem; /* Ширина */
-    height: 21.875rem; /* Высота */
-    padding: 1.25rem; /* Отступы внутри блока */
+    width: 15%; /* Ширина */
+    height: 48%; /* Высота */
+    padding: 1.259%; /* Отступы внутри блока */
     display: flex; /* Для расположения маленьких блоков по горизонтали */
     flex-direction: column; /* Размещение блоков по вертикали */
-    gap: 0.625rem; /* Расстояние между блоками */
+    gap: 3%; /* Расстояние между блоками */
     transform: translate(-50%, -50%); /* Сдвигаем блок на 50% по обеим осям, чтобы точно отцентрировать */
 }
 
@@ -76,17 +76,18 @@ p.description {
     background-color: #3A1717; /* Красный цвет */
     opacity: 0.83; /* Прозрачность */
     border: none; /* Без скругленных углов */
-    padding: 0.625rem 1.25rem; /* длина и щирина блоков*/
+    padding: 4.5% 2%; /* длина и щирина блоков*/
     color: #E6E6E6; /* Цвет текста */
     font-family: 'Antic Didone', serif; /* Шрифт */
     font-size: 0.9375rem; /* Размер шрифта */
     text-align: center; /* Текст по центру */
     cursor: pointer; /* Курсор при наведении */
     margin-top: 5%;
+    box-shadow: 0px 0.25rem 0.25rem rgba(58, 23, 23, 0.73);
 }
 /* Чтобы каждый следующий блок был ниже предыдущего */
 .tag-button:nth-child(n+2) {
-    margin-top: 0.625rem;
+    margin-top: 4%;
 }
 /* Когда кнопка выбрана (при нажатии) */
 .tag-button.selected {
@@ -103,20 +104,21 @@ p.description {
 /* ==== Штуки с модальным окном ==== */
 /* Модальное окно для категории */
 .category-window {
-    position: fixed;
+    position: absolute;
     top: 31%;
     left: 59.5%;
     background-color: #600200;
-    border: 0.125rem solid #600200;
-    padding: 1.25rem;
-    width: 7.5rem;
-    height: 21.875rem;
+    padding: 1.5%;
+    width: 7%;
+    height: 47.5%;
     overflow-y: auto;  /* Прокрутка, если тегов больше */
-    box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0.25rem 0.25rem rgba(58, 23, 23, 0.73);
     display: none; /* Изначально скрыто */
-    border-radius: 0.6875rem; /* Скругленные углы */
+    border-radius: 11px; /* Скругленные углы */
     font-family: 'Antic Didone', serif; /* Шрифт */
-    letter-spacing: 0.03rem; /* Расстояние между буквами */
+    letter-spacing: 0.5%; /* Расстояние между буквами */
+
+    
 }
 
 /* Стиль для контейнера с тегом */
@@ -162,7 +164,7 @@ p.description {
 /* Стиль для контейнера с кнопками */
 .generate-container {
     position: fixed;
-    bottom: 10%; /* Расстояние от нижней части экрана */
+    bottom: 9.5%; /* Расстояние от нижней части экрана */
     left: 50%; /* Центрирование по горизонтали */
     transform: translateX(-50%); /* Корректировка для точного центрирования */
     z-index: 9999; /* Убедимся, что кнопки находятся поверх других элементов */
@@ -173,7 +175,7 @@ p.description {
 /* Общие стили для ссылок (кнопок) */
 a {
     font-family: 'Castoro Titling', serif;
-    font-size: 18px;
+    font-size: 20px;
     color: #600200;
     text-shadow: 0px 0.25rem 0.25rem rgba(58, 23, 23, 0.8);
     text-decoration: underline;
