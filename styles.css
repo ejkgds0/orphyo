@@ -158,8 +158,6 @@ p.description {
 }
 
 
-
-
 /* ==== Generate с подчеркиванием ==== */
 /* Стиль для контейнера с кнопками */
 .generate-container {
@@ -196,4 +194,30 @@ a {
     text-decoration: underline;
     cursor: not-allowed;
     pointer-events: none;
+}
+
+
+/* ==== Кнопка иконка ==== */
+/* Стили */
+.icon-button {
+    position: absolute; /* Располагаем кнопку поверх контента */
+    top: 20px; /* Отступ сверху */
+    left: 20px; /* Отступ слева */
+    width: 50px; /* Ширина кнопки */
+    height: 50px; /* Высота кнопки */
+    z-index: 100; /* Устанавливаем высокий приоритет по слоям */
+}
+
+.icon-button img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Сохраняем пропорции изображения */
+    border-radius: 50%; /* Закругляем края изображения */
+    box-shadow: 0px 0.25rem 0.25rem rgba(0, 0, 0, 0.5); /* Добавляем тень */
+}
+
+.icon-button:hover img {
+    opacity: 0.8; /* Меняем прозрачность при наведении */
+    transform: scale(1.1); /* Увеличиваем иконку */
+    transition: 0.3s ease; /* Плавность анимации */
 }
