@@ -107,7 +107,6 @@ button[type="submit"]:hover {
 
 /* ==== SIGN UP КНОПКА ==== */
 /* сама кнопка */
-/* ==== Текст и кнопка SIGN UP ==== */
 .signup-wrapper {
     position: absolute;
     top: 20px; /* Отступ сверху */
@@ -142,24 +141,34 @@ button[type="submit"]:hover {
 }
 
 
+/* ==== GO BACK КНОПКА ==== */
+.go-back-wrapper {
+    position: absolute;
+    top: 25px; /* Отступ сверху */
+    right: 20px; /* Отступ справа */
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Расстояние между текстом и кнопкой */
+    font-family: 'Antic Didone', serif;
+}
 
+/* Стили для кнопки "GO BACK" */
+.go-back-wrapper .toggle-link {
+    padding: 10px 20px;
+    background-color: #3A1212;
+    color: white;
+    font-size: 16px;
+    font-family: 'Castoro Titling', serif;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* Эффект при наведении */
+.go-back-wrapper .toggle-link:hover {
+    background-color: #121212;
+    transform: scale(1.05);
+}
 
 
 /* ==== Кнопка иконка ==== */
