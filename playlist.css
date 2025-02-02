@@ -19,7 +19,7 @@ body {
 /* Фоновое изображение */
 body::before {
     content: '';
-    background: url('playlist.jpg') no-repeat left center;
+    background: url('playlist2.jpg') no-repeat left center;
     background-size: contain; /* Сохраняет соотношение сторон изображения */
     position: absolute;
     top: 0;
@@ -45,28 +45,27 @@ body::before {
     border-radius: 11px 11px 0 0; /* Скругленные углы сверху */
     border: 3px solid #3a1717;
     padding: 10px 20px; /* Отступы */
-    box-shadow: 4px 0px 8px rgba(58, 23, 23, 0.9); /* Тень во все 4 стороны */
-    
-    /* Позиционирование блока */
-    position: absolute; /* Позиционирование относительно экрана */
-    top: 10%; /* Сдвигаем блок вниз */
-    left: 50%; /* Сдвигаем блок вправо */
-    
-    /* Устанавливаем размеры в процентах */
-    width: 17%; /* Ширина */
-    height: 5%; /* Высота */
+    box-shadow: 4px 0px 8px rgba(58, 23, 23, 0.9); /* Тень */
 
-    /* Для выравнивания текста по нижней грани блока */
+    /* Позиционирование и размеры */
+    position: absolute;
+    top: 10%; /* Сдвиг вниз */
+    left: 60%; /* Центрируем по горизонтали */
+    transform: translateX(-50%); /* Выравниваем по центру */
+
+    width: 17%; /* Ширина */
+    height: 6%; /* Высота */
+
     display: flex;
-    flex-direction: column; /* Оставляем элементы внутри блока по вертикали */
-    justify-content: flex-end; /* Размещаем текст внизу блока */
+    align-items: center; /* Центрируем текст */
+    justify-content: center; /* Центрируем текст */
     z-index: 10;
 }
 
 /* Текст внутри */
 .your-playlist {
     color: #E6E6E6; /* Цвет текста */
-    font-family: 'Antic Didone', serif; /* Шрифт */
+    font-family: 'Antic Didone', 'Noto Sans', serif; /* Шрифт */
     font-size: 21px; /* Размер шрифта в пикселях */
     text-align: center; /* Текст по центру */
     margin: 0; /* Убираем отступы вокруг текста */
@@ -75,24 +74,23 @@ body::before {
 
 /* ==== Блок с песнями ==== */
 .song-container {
-    position: relative;
     background-color: #e6e6e6; /* Цвет фона */
     border: 3px solid #3a1717;
-    box-shadow: 4px 4px 8px rgba(58, 23, 23, 0.9);
+    box-shadow: 4px 4px 8px rgba(58, 23, 23, 0.9); /* Тень */
     border-radius: 0 0 11px 11px;
-    
-    position: absolute; /* Позиционируем относительно .main-wrapper */
-    top: 18%; /* Сдвигаем вниз */
+
+    /* Позиционирование и размеры */
+    position: absolute;
+    top: 18%; /* Сдвиг вниз */
     left: 60%; /* Центрируем по горизонтали */
     transform: translateX(-50%); /* Выравниваем по центру */
-    
+
     width: 17%; /* Ширина */
-    height: 63%; /* Высота */
+    height: 64%; /* Высота */
     padding: 20px;
 
     overflow: auto; /* Прокрутка для содержимого */
 
-    /* Flexbox для выравнивания песен */
     display: flex;
     flex-direction: column;
     align-items: center; /* Центрируем элементы по горизонтали */
@@ -111,7 +109,7 @@ body::before {
 
 /* Элементы песен */
 .song-item {
-    font-family: 'Antic Didone', serif; /* Шрифт */
+    font-family: 'Antic Didone', 'Noto Sans', serif; /* Шрифт */
     font-size: 15px; /* Размер шрифта */
     color: #121212; /* Цвет текста */
     margin-bottom: 5px; /* Отступ между песнями */
@@ -205,5 +203,5 @@ body::before {
 #tag-list li {
     margin-bottom: 5px;
     font-size: 14px;
-    font-family: 'Antic Didone', sans-serif;
+    font-family: 'Antic Didone', 'Noto Sans', sans-serif;
 }
