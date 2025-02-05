@@ -49,7 +49,7 @@ p.description {
     font-family: 'Antic Didone', serif; /* Шрифт */
     font-size: 1.0625rem; /* Меньший размер шрифта */
     text-align: center; /* Выравнивание по центру */
-    margin-top: 10vh; /* Отступ сверху (5%) */
+    margin-top: 9vh; /* Отступ сверху (5%) */
     font-weight: normal;
 }
 
@@ -226,360 +226,423 @@ a {
 
 
 /* ==== Медиазапросы ==== */
+
 /* Очень большие экраны (более 1440px) */
 @media (min-width: 1440px) { 
     /* размер шрифта заголовка */
     header h1 {
-        font-size: 3.5rem; /* Размер шрифта */
-        margin-top: 7vh; /* Отступ сверху */
+        font-size: 3rem; /* Размер шрифта */
+        margin-top: 6vh; /* Отступ сверху */
     }
 
     /* Размер шрифта описания */
     p.description {
-        font-size: 1.25rem;
+        font-size: 1.15rem;
     }
 
     /* Размер шрифта для выбора тегов */
     .choose-tag {
-        font-size: 1.125rem;
-        margin-top: 10vh; /* Отступ сверху */
+        font-size: 1.025rem;
+        position: relative;
+        top: 1.5rem;
     }
 
     /* Блоки с категориями */
     .tags-container {
-        width: 16%; /* Ширина блока*/
-        height: 45%; /* Высота */
-        padding: 1.8%;
+        width: 13%; /* Ширина блока*/
+        height: 24rem; /* Высота */
+        padding: 1.3rem;
     }
 
     .tag-button {
-        font-size: 1.025rem; /* Размер шрифта для кнопок */
-        padding: 5% 7%; /* Внутренние отступы */
+        font-size: 1.125rem; /* Размер шрифта для кнопок */
+        padding: 0.5rem 1rem; /* Внутренние отступы */
     }
 
     .category-window {
         width: 7%; /* Ширина модального окна */
-        height: 46%; /* Высота */
-        left: 60%;
+        height: 24rem; /* Высота */
+        left: 58.1%;
         top: 32.5%; /* Отступ сверху */
         font-size: 1rem;
+        padding: 1.3rem;
     }
 
     .generate-container {
-        bottom: 7%;
+        bottom: 7vh;
     }
 }
 
 
 /* Для больших экранов (от 1280px до 1440px) */
 @media (min-width: 1280px) and (max-width: 1440px) {
-    /* Размер шрифта заголовка */
+    /* размер шрифта заголовка */
     header h1 {
-        font-size: 3.5rem; /* Размер шрифта */
-        margin-top: 7vh; /* Отступ сверху */
+        font-size: 3rem; /* Размер шрифта */
+        margin-top: 6vh; /* Отступ сверху */
     }
 
     /* Размер шрифта описания */
     p.description {
-        font-size: 1.25rem; /* Шрифт */
+        font-size: 1.15rem;
     }
 
     /* Размер шрифта для выбора тегов */
     .choose-tag {
-        font-size: 1.125rem;
-        margin-top: 10vh; /* Отступ сверху */
+        font-size: 1.01rem;
+        position: relative;
+        top: -2rem;
     }
 
     /* Блоки с категориями */
     .tags-container {
-        width: 16%; /* Ширина блока */
-        height: 45%; /* Высота */
-        padding: 1.8%;
+        width: 13%; /* Ширина блока*/
+        height: 23rem; /* Высота */
+        padding: 1.3rem;
     }
 
     .tag-button {
         font-size: 1.025rem; /* Размер шрифта для кнопок */
-        padding: 5% 7%; /* Внутренние отступы */
+        padding: 0.4rem 1rem; /* Внутренние отступы */
     }
 
     .category-window {
         width: 7%; /* Ширина модального окна */
-        height: 46%; /* Высота */
-        left: 60%;
-        top: 32.5%; /* Отступ сверху */
+        height: 23rem; /* Высота */
+        left: 58.3%;
+        top: 30%; /* Отступ сверху */
         font-size: 1rem;
+        padding: 1.3rem;
     }
 
     .generate-container {
-        bottom: 7%; /* Отступ снизу */
+        bottom: 7vh;
     }
 }
 
 
-/* Для десктопов (от 1024px до 1280px) */
+/* Для десктопов (от 1080px до 1280px) */
 @media (min-width: 1080px) and (max-width: 1280px) {
-    /* Размер шрифта заголовка */
+    /* размер шрифта заголовка */
     header h1 {
-        font-size: 3.5rem; /* Размер шрифта */
-        margin-top: 7vh; /* Отступ сверху */
+        font-size: 3rem; /* Размер шрифта */
+        margin-top: 8vh; /* Отступ сверху */
     }
 
     /* Размер шрифта описания */
     p.description {
-        font-size: 1.25rem; /* Шрифт */
+        font-size: 1.15rem;
     }
 
     /* Размер шрифта для выбора тегов */
     .choose-tag {
-        font-size: 1.125rem;
-        margin-top: 10vh; /* Отступ сверху */
+        font-size: 1.01rem;
+        position: relative;
+        top: -2rem;
     }
 
     /* Блоки с категориями */
     .tags-container {
-        width: 18%; /* Ширина блока */
-        height: 45%; /* Высота */
-        padding: 1.8%;
+        width: 14%; /* Ширина блока*/
+        height: 21rem; /* Высота */
+        padding: 1.3rem;
     }
 
     .tag-button {
-        font-size: 1.025rem; /* Размер шрифта для кнопок */
-        padding: 5% 7%; /* Внутренние отступы */
+        font-size: 0.95rem; /* Размер шрифта для кнопок */
+        padding: 0.4rem 1rem; /* Внутренние отступы */
     }
 
     .category-window {
-        width: 7.5%; /* Ширина модального окна */
-        height: 45.5%; /* Высота */
-        left: 61%;
-        top: 33%; /* Отступ сверху */
-        font-size: 1rem;
+        width: 7.25%; /* Ширина модального окна */
+        height: 21rem; /* Высота */
+        left: 59.2%;
+        top: 32%; /* Отступ сверху */
+        font-size: 0.85rem;
+        padding: 1.3rem;
     }
 
     .generate-container {
-        bottom: 7%; /* Отступ снизу */
+        bottom: 8vh;
     }
 }
 
 
 /* Для планшетов (от 768px до 1080px) */
 @media (min-width: 768px) and (max-width: 1080px) {
-    /* Размер шрифта заголовка */
+    /* размер шрифта заголовка */
     header h1 {
-        font-size: 3.5rem; /* Размер шрифта */
-        margin-top: 7vh; /* Отступ сверху */
+        font-size: 2.9rem; /* Размер шрифта */
+        margin-top: 9vh; /* Отступ сверху */
     }
 
     /* Размер шрифта описания */
     p.description {
-        font-size: 1.25rem; /* Шрифт */
+        font-size: 1.1rem;
     }
 
     /* Размер шрифта для выбора тегов */
     .choose-tag {
-        font-size: 1.125rem;
-        margin-top: 11vh; /* Отступ сверху */
+        position: relative;
+        top: -1.5rem;
+        font-size: 1rem;
     }
 
     /* Блоки с категориями */
     .tags-container {
-        width: 22%; /* Ширина блока */
-        height: 44%; /* Высота */
-        padding: 2%;
+        width: 16%; /* Ширина блока*/
+        height: 20rem; /* Высота */
+        padding: 1.3rem;
     }
 
     .tag-button {
-        font-size: 1.025rem; /* Размер шрифта для кнопок */
-        padding: 5% 6.5%; /* Внутренние отступы */
+        font-size: 0.9rem; /* Размер шрифта для кнопок */
+        padding: 0.35rem 1rem; /* Внутренние отступы */
     }
 
     .category-window {
-        width: 11%; /* Ширина модального окна */
-        height: 45%; /* Высота */
-        left: 63.5%;
-        top: 34%; /* Отступ сверху */
-        font-size: 1rem;
+        width: 8%; /* Ширина модального окна */
+        height: 20rem; /* Высота */
+        left: 60.9%;
+        top: 33%; /* Отступ сверху */
+        font-size: 0.8rem;
+        padding: 1.3rem;
     }
 
     .generate-container {
-        bottom: 7%; /* Отступ снизу */
+        bottom: 9vh;
     }
 }
 
 
-/* Для планшетов (от 600px до 768px) */
+/* Для планшетиков (от 600px до 768px) */
 @media (min-width: 600px) and (max-width: 768px) {
-    /* Размер шрифта заголовка */
+    /* размер шрифта заголовка */
     header h1 {
-        font-size: 3rem; /* Размер шрифта */
+        font-size: 2.7rem; /* Размер шрифта */
         margin-top: 10vh; /* Отступ сверху */
     }
 
     /* Размер шрифта описания */
     p.description {
-        font-size: 1.125rem; /* Шрифт */
+        font-size: 1.1rem;
     }
 
     /* Размер шрифта для выбора тегов */
     .choose-tag {
-        font-size: 1.025rem;
-        margin-top: 11vh; /* Отступ сверху */
+        font-size: 1rem;
+        position: relative;
+        top: -1.5rem;
     }
 
     /* Блоки с категориями */
     .tags-container {
-        width: 28%; /* Ширина */
-        height: 43%; /* Высота*/
-        padding: 2.5%;
+        width: 20%; /* Ширина блока*/
+        height: 20rem; /* Высота */
+        padding: 1.2rem;
     }
 
     .tag-button {
-        font-size: 0.9; /* Пазмер шрифта для кнопок */
-        padding: 5% 6%; /* Внутренние отступы */
+        font-size: 0.9rem; /* Размер шрифта для кнопок */
+        padding: 0.4rem 1rem; /* Внутренние отступы */
     }
 
     .category-window {
-        width: 14%; /* Ширина модального окна */
-        height: 44.5%; /* Высота */
-        left: 67%;
-        top: 34.5%; /* Отступ сверху */
-        font-size: 0.88rem;
+        width: 10%; /* Ширина модального окна */
+        height: 20rem; /* Высота */
+        left: 63.7%;
+        top: 33.5%; /* Отступ сверху */
+        font-size: 0.8rem;
+        padding: 1.2rem;
     }
 
     .generate-container {
-        bottom: 10%; /* Отступ снизу */
+        bottom: 10vh;
     }
 }
 
 
 /* Мобильные телефоны от 408px до 600px*/
 @media (min-width: 408px) and (max-width: 600px) {
-    /* Размер шрифта заголовка */
+    /* размер шрифта заголовка */
     header h1 {
-        font-size: 2.8rem; /* Размер шрифта */
+        font-size: 2.6rem; /* Размер шрифта */
         margin-top: 11vh; /* Отступ сверху */
     }
 
     /* Размер шрифта описания */
     p.description {
-        font-size: 1.125rem;
+        font-size: 1rem;
     }
 
     /* Размер шрифта для выбора тегов */
     .choose-tag {
-        font-size: 1.025rem;
-        margin-top: 10vh; /* Отступ сверху */
+        font-size: 0.9rem;
+        position: relative;
+        top: 0rem;
     }
 
     /* Блоки с категориями */
     .tags-container {
-        width: 38%; /* Ширина */
-        height: 43%; /* Высота*/
-        padding: 2.5%;
+        width: 24%; /* Ширина блока*/
+        height: 17rem; /* Высота */
+        padding: 1.1rem;
     }
 
     .tag-button {
-        font-size: 0.9; /* Пазмер шрифта для кнопок */
-        padding: 5% 6%; /* Внутренние отступы */
+        font-size: 0.8rem; /* Размер шрифта для кнопок */
+        padding: 0.38rem 1rem; /* Внутренние отступы */
     }
 
     .category-window {
-        width: 18%; /* Ширина модального окна */
-        height: 44.25%; /* Высота */
-        left: 72%;
-        top: 35%; /* Отступ сверху */
-        font-size: 0.825rem;
+        width: 12%; /* Ширина модального окна */
+        height: 17rem; /* Высота */
+        left: 66.9%;
+        top: 36.8%; /* Отступ сверху */
+        font-size: 0.7rem;
+        padding: 1.1rem;
     }
 
     .generate-container {
-        bottom: 11%; /* Отступ снизу */
+        bottom: 11vh;
     }
 }
 
 /* Мини мобильные телефоны (от 247px до 408px) */
 @media (min-width: 247px) and (max-width: 408px) {
-    /* Размер шрифта заголовка */
+    /* размер шрифта заголовка */
     header h1 {
-        font-size: 2.8rem; /* Размер шрифта */
-        margin-top: 12vh; /* Отступ сверху */
+        font-size: 2.3rem; /* Размер шрифта */
+        margin-top: 13vh; /* Отступ сверху */
     }
 
     /* Размер шрифта описания */
     p.description {
-        font-size: 1.125rem;
+        font-size: 0.9rem;
     }
 
     /* Размер шрифта для выбора тегов */
     .choose-tag {
-        font-size: 1.025rem;
-        margin-top: 11.5vh; /* Отступ сверху */
+        font-size: 0.8rem;
+        position: relative;
+        top: 1.5rem;
     }
 
     /* Блоки с категориями */
     .tags-container {
-        width: 38%; /* Ширина */
-        height: 39%; /* Высота*/
-        padding: 2.5%;
+        width: 31%; /* Ширина блока*/
+        height: 14rem; /* Высота */
+        padding: 1rem;
     }
 
     .tag-button {
-        font-size: 0.9; /* Пазмер шрифта для кнопок */
-        padding: 5% 6%; /* Внутренние отступы */
+        font-size: 0.65rem; /* Размер шрифта для кнопок */
+        padding: 0.35rem 1rem; /* Внутренние отступы */
     }
 
     .category-window {
-        width: 22%; /* Ширина модального окна */
-        height: 39.5%; /* Высота */
+        width: 15%; /* Ширина модального окна */
+        height: 14rem; /* Высота */
         left: 72%;
-        top: 37.5%; /* Отступ сверху */
-        font-size: 0.825rem;
+        top: 40.5%; /* Отступ сверху */
+        font-size: 0.65rem;
+        padding: 1rem;
     }
 
     .generate-container {
-        bottom: 10%; /* Отступ снизу */
+        bottom: 13vh;
     }
 }
 
 
-/* Минимальные экранчики (меньше 247px) */
-@media (max-width: 247px) {
-    /* Размер шрифта заголовка */
+/* Минимальные экранчики */
+@media (min-width: 199px) and (max-width: 247px) {
+    /* размер шрифта заголовка */
     header h1 {
-        font-size: 2.8rem; /* Размер шрифта */
+        font-size: 2.3rem; /* Размер шрифта */
         margin-top: 13vh; /* Отступ сверху */
     }
 
     /* Размер шрифта описания */
     p.description {
-        font-size: 1.025rem;
+        font-size: 0.9rem;
     }
 
     /* Размер шрифта для выбора тегов */
     .choose-tag {
-        font-size: 0.9;
-        margin-top: 13vh; /* Отступ сверху */
+        font-size: 0.8rem;
+        position: relative;
+        top: 1.9rem;
     }
 
     /* Блоки с категориями */
     .tags-container {
-        width: 48%; /* Ширина */
-        height: 35%; /* Высота*/
-        padding: 2.5%;
+        width: 37%; /* Ширина блока*/
+        height: 14rem; /* Высота */
+        padding: 0.8rem;
     }
 
     .tag-button {
-        font-size: 0.8; /* Пазмер шрифта для кнопок */
-        padding: 5% 5%; /* Внутренние отступы */
+        font-size: 0.65rem; /* Размер шрифта для кнопок */
+        padding: 0.38rem 1rem; /* Внутренние отступы */
     }
 
     .category-window {
-        width: 20%; /* Ширина модального окна */
-        height: 35.5%; /* Высота */
-        left: 78%;
-        top: 40%; /* Отступ сверху */
-        font-size: 0.8rem;
+        width: 13%; /* Ширина модального окна */
+        height: 14rem; /* Высота */
+        left: 75%;
+        top: 40.5%; /* Отступ сверху */
+        font-size: 0.4rem;
+        padding: 0.9rem;
     }
 
     .generate-container {
-        bottom: 13%; /* Отступ снизу */
+        bottom: 13vh;
+    }
+}
+
+/* Минимальные экранчики (меньше 199px) */
+@media (max-width: 199px) {
+    /* размер шрифта заголовка */
+    header h1 {
+        font-size: 2rem; /* Размер шрифта */
+        margin-top: 15vh; /* Отступ сверху */
+    }
+
+    /* Размер шрифта описания */
+    p.description {
+        font-size: 0.8rem;
+    }
+
+    /* Размер шрифта для выбора тегов */
+    .choose-tag {
+        font-size: 0.7rem;
+        position: relative;
+        top: 1.75rem;
+    }
+
+    /* Блоки с категориями */
+    .tags-container {
+        width: 38%; /* Ширина блока*/
+        height: 14rem; /* Высота */
+        padding: 0.7rem;
+    }
+
+    .tag-button {
+        font-size: 0.55rem; /* Размер шрифта для кнопок */
+        padding: 0.38rem 1rem; /* Внутренние отступы */
+    }
+
+    .category-window {
+        width: 13%; /* Ширина модального окна */
+        height: 14rem; /* Высота */
+        left: 75.5%;
+        top: 41%; /* Отступ сверху */
+        font-size: 0.35rem;
+        padding: 0.7rem;
+    }
+
+    .generate-container {
+        bottom: 13vh;
     }
 }
