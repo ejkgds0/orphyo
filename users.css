@@ -1,0 +1,205 @@
+/* Базовые стили */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Antic Didone', sans-serif;
+  background-color: #f5f4f1;
+  color: #300a0a;
+  height: 100vh;
+}
+
+/* Контейнер страницы */
+.container {
+  display: flex;
+  height: 100%;
+}
+
+/* ==== Левая часть ==== */
+/* Сайдбар */
+.sidebar {
+  width: 25%;
+  background-color: #3A1717;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem 1rem;
+}
+
+/* Профиль */
+.profile {
+  text-align: center;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  background-color: #121212;
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+}
+
+.username {
+  font-family: 'Castoro Titling', serif;
+  color: #eee;
+  font-size: 1.2rem;
+  border-bottom: 1px solid #321010;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* ==== Кнопки ==== */
+/* Иконки внизу сайдбара */
+.bottom-icons {
+  position: relative;
+  height: 100px;        /* разместить кнопки внутри этого блока по высоте */
+}
+
+/* Абсолютное позиционирование кнопок-иконок */
+.icon-btn {
+  position: absolute;   /* поверх контента .sidebar */
+  bottom: 20px;         /* от низа .sidebar */
+  width: 50px;
+  height: 50px;
+  z-index: 100;
+}
+
+/* Первая кнопка слева, вторая справа */
+.bottom-icons .icon-btn:nth-child(1) {
+  left: 20px;
+}
+
+.bottom-icons .icon-btn:nth-child(2) {
+  right: 20px;
+}
+
+/* Стили для самой картинки */
+.icon-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;              /* сохраняем пропорции */
+  border-radius: 50%;               /* круглые края */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5); /* тень */
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Эффект при наведении */
+.icon-btn:hover img {
+  opacity: 0.8;
+  transform: scale(1.1);
+  transition: 0.3s ease; /* Плавность анимации */
+}
+
+/* ==== Основная часть экрана ==== */
+/* Основная часть */
+.main {
+  width: 75%;
+  padding: 2rem 3rem;
+  background-color: #b2b2b2;
+}
+
+/* Заголовок */
+.main-title {
+  font-family: 'Castoro Titling', serif;           /* подключённый шрифт */
+  font-size: clamp(2rem, 5vw, 3.125rem);           /* отзывчивый размер от 2rem до 3.125rem */
+  color: #600200;                                  /* тёмно‑красный цвет текста */
+  text-shadow: 0 0.25rem 0.25rem rgba(58, 23, 23, 0.5); /* тень под текстом */
+  margin: 0 0 2rem;                                /* убираем верхний отступ, оставляем снизу */
+  line-height: 0.6;                                /* между строками */
+}
+
+/* Деление на 2 строки */
+.main-title span {
+  display: block;
+}
+
+/* ==== Плейлисты ==== */
+.playlists {
+  display: flex;
+  gap: 2rem;
+  margin-top: 5rem;
+}
+
+/* ==== Карточка плейлиста ==== */
+
+.card {
+  background-color: #f9f9fb;                /* светлый фон, как у song-container */
+  border: 3px solid #3a1717;               /* толстая бордюр-рамка */
+  border-radius: 11px;                     /* крупные скругления */
+  box-shadow: 4px 4px 8px rgba(58, 23, 23, 0.9); /* глубокая тень */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 250px;                            /* фиксированная ширина, как раньше */
+  height: 550px;   
+}
+
+/* Заголовок карточки */
+.card-header {
+  height: 50px;
+  background-color: #3a1717;               /* тёмно-бордовый */
+}
+
+/* Тело карточки */
+.card-body {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  list-style-type: none; /* Убираем маркеры у списка */
+  line-height: 1; /* Высота строки (уменьшает/увеличивает расстояние между строками) */
+  letter-spacing: 0.05em; /* Увеличиваем или уменьшаем расстояние между буквами */
+  text-align: center; /* Центрируем весь текст в списке */
+}
+
+/* Блок песни */
+.card-body .song-item {
+  font-family: 'Antic Didone', 'Noto Sans', serif;
+  font-size: 15px;
+  color: #121212;
+  margin-bottom: 5px;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Заголовок песни (название) */
+.card-body .song-item h4 {
+  margin: 5px 0;
+  font-size: 1rem;
+}
+
+/* Ссылка внутри заголовка */
+.card-body .song-item h4 a {
+  color: #121212;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.card-body .song-item h4 a:hover {
+  color: #600200;
+  text-decoration: underline;
+}
+
+/* Блок с info (исполнитель + длительность) */
+.card-body .song-info {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 5px;
+}
+
+/* Отступ между артистом и длительностью */
+.card-body .song-info p {
+  margin: 0 1rem 0 0;
+  font-size: 0.9rem;
+  color: #3a1717;
+}
+
+/* Убираем отступ у последнего .song-item */
+.card-body .song-item:last-child {
+  margin-bottom: 0;
+}
+
