@@ -11,7 +11,7 @@ html, body {
 /* Стиль для фонового изображения с прозрачностью */
 body::before {
     content: '';
-    background: url('background2.jpg') no-repeat center center; /* Центрирование фона */
+    background: url('../assets/background2.jpg') no-repeat center center; /* Центрирование фона */
     background-size: cover; /* Масштабировать с сохранением пропорций */
     position: fixed;
     top: 0;
@@ -24,7 +24,6 @@ body::before {
 }
 
 /* ==== Тексты ==== */
-
 
 /* Стиль для текста ORPHYO */
 header h1 {

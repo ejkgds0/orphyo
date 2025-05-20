@@ -19,7 +19,7 @@ body {
 /* Фоновое изображение */
 body::before {
     content: '';
-    background: url('playlist2.jpg') no-repeat left center;
+    background: url('../assets/playlist2.jpg') no-repeat left center;
     background-size: contain; /* Сохраняет соотношение сторон изображения */
     position: absolute;
     top: 0;
@@ -146,32 +146,62 @@ body::before {
 }
 
 
-/* ==== Кнопка назад ==== */
-/* Контейнер для кнопки возврата */
+/* ==== Кнопки ==== */
+
+/* Контейнер для кнопки СОХРАНИТЬ */
+.save-container {
+    position: absolute;
+    bottom: 7.51%;
+    left: 55%;                /* сдвигаем влево от центра страницы */
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+/* Кнопка сохранить (выглядит как ссылка-кнопка) */
+.save-container button {
+    background: none;
+    border: none;
+    font-family: 'Castoro Titling', serif;
+    font-size: 18px;
+    color: #e6e6e6;
+    text-decoration: none;
+    border-bottom: 2px solid #e6e6e6;
+    padding-bottom: 5px;
+    cursor: pointer;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.save-container button:hover {
+    color: #600200;
+    border-color: #600200;
+}
+
+
+/* Контейнер для кнопки НАЗАД */
 .go-back {
-    position: absolute; /* Абсолютное позиционирование */
-    bottom: 8%; /* Отступ снизу от контейнера с песнями */
-    left: 60%; /* Центрируем по горизонтали */
-    transform: translateX(-50%); /* Сдвигаем элемент влево на 50% ширины */
-    text-align: center; /* Выравнивание текста по центру */
+    position: absolute;
+    bottom: 8%;
+    left: 65%;
+    transform: translateX(-50%);
+    text-align: center;
 }
 
 /* Ссылка, которая выглядит как кнопка */
 .go-back a {
-    font-family: 'Castoro Titling', serif; /* Шрифт */
-    font-size: 18px; /* Размер шрифта */
-    color: #e6e6e6; /* Цвет текста */
-    text-decoration: none; /* Убираем стандартное подчеркивание */
-    border-bottom: 2px solid #e6e6e6; /* Нижнее подчеркивание */
-    padding-bottom: 5px; /* Отступ снизу, чтобы подчеркнуть не касалось текста */
-    transition: color 0.3s ease, border-color 0.3s ease; /* Плавный переход */
+    font-family: 'Castoro Titling', serif;
+    font-size: 18px;
+    color: #e6e6e6;
+    text-decoration: none;
+    border-bottom: 2px solid #e6e6e6;
+    padding-bottom: 5px;
+    transition: color 0.3s ease, border-color 0.3s ease;
 }
 
-/* При наведении на ссылку */
 .go-back a:hover {
-    color: #600200; /* Цвет текста при наведении */
-    border-color: #600200; /* Цвет нижнего подчеркивания при наведении */
+    color: #600200;
+    border-color: #600200;
 }
+
 
 /* ==== Окно с тегами ==== */
 /* Всплывающее окно */

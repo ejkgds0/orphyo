@@ -7,9 +7,15 @@ let df = [];  // Глобальная переменная для данных �
 let categories = {};  // Глобальная переменная для категорий и тегов
 let selectedTags = new Set();  // Набор для хранения выбранных тегов
 
+function loadSelectedTags() {
+    const selectedTagsArray = JSON.parse(localStorage.getItem('selectedTags') || '[]');
+    selectedTags = new Set(selectedTagsArray);
+}
+
+
 // Функция для загрузки CSV
 function loadCSVData() {
-    Papa.parse("df.csv", {
+    Papa.parse("assets/df.csv", {
         download: true,
         header: true,
         dynamicTyping: true,
@@ -100,3 +106,20 @@ function handleCheckboxChange(tag, isChecked) {
     console.log("Выбранные теги:", Array.from(selectedTags));
 }
 
+// Проверка на авторизованность
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const res = await fetch('http://127.0.0.1:8000/api/user-status/', {
+      credentials: 'include'
+    });
+    const data = await res.json();
+    const loginLink = document.querySelector('header .icon-button');
+    if (data.authenticated) {
+      loginLink.href = 'users.html';
+    } else {
+      loginLink.href = 'login.html';
+    }
+  } catch (e) {
+    console.error('Unable to check user status:', e);
+  }
+});

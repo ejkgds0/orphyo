@@ -6,10 +6,12 @@ document.addEventListener("DOMContentLoaded", function() {
 let df = [];  // Глобальная переменная для данных из CSV
 let categories = {};  // Глобальная переменная для категорий и тегов
 let selectedTags = new Set();  // Набор для хранения выбранных тегов
+let currentAlbum = [];   // Сюда сохранять последний сгенерированный плейлист
+let hasSaved = false;    // флаг: уже сохранили?
 
 // Функция для загрузки CSV
 function loadCSVData() {
-    Papa.parse("df.csv", {
+    Papa.parse("assets/df.csv", {
         download: true,
         header: true,
         dynamicTyping: true,
@@ -17,7 +19,21 @@ function loadCSVData() {
             console.log("Загруженные данные:", results.data);
             df = results.data;  // Сохраняем данные в переменную df
             processData(df);  // Обрабатываем данные
-            generateAlbum();  // Вызываем функцию генерации плейлиста после загрузки данных
+            //generateAlbum();  // Вызываем функцию генерации плейлиста после загрузки данных
+
+            // если пришли с главной страницей — генерируем новый
+            if (sessionStorage.getItem('orphyo:shouldGenerate') === '1') {
+                generateAlbum();
+                sessionStorage.removeItem('orphyo:shouldGenerate');
+            }
+            // если уже был сгенерирован альбом — отрисовываем его
+            else if (sessionStorage.getItem('orphyo:lastAlbum')) {
+                const saved = JSON.parse(sessionStorage.getItem('orphyo:lastAlbum'));
+                currentAlbum = saved;
+                hasSaved = true;       // чтобы кнопка Save стала неактивной
+                displayAlbum(currentAlbum);
+            }
+            // иначе — оставляем Loading
         },
         error: function(error) {
             console.error("Ошибка при загрузке CSV:", error);
@@ -43,6 +59,7 @@ function processData(data) {
     console.log("Группировка категорий завершена:", categories);
 }
 
+
 // Функция для генерации альбома с выбранными тегами
 function generateAlbum() {
     const selectedTagsArray = JSON.parse(localStorage.getItem('selectedTags') || '[]');  // Загружаем выбранные теги из localStorage
@@ -60,6 +77,14 @@ function generateAlbum() {
 
     // Отображаем треки
     displayAlbum(randomTracks);
+
+    // Сохраняем в переменную и сбрасываем флаг
+    currentAlbum = randomTracks;
+    hasSaved = false;
+
+    sessionStorage.setItem('orphyo:lastAlbum', JSON.stringify(currentAlbum));
+
+    displayAlbum(currentAlbum);
 }
 
 // Функция для случайного выбора треков
@@ -92,9 +117,11 @@ function displayAlbum(tracks) {
         trackLink.textContent = track.track;
         trackLink.target = '_blank'; // Открываем ссылку в новой вкладке
 
+        // Название
         const trackName = document.createElement('h4');
         trackName.appendChild(trackLink);
 
+        // Исполнитель
         const artistName = document.createElement('p');
         artistName.textContent = `Artist: ${track.artist}`;
 
@@ -157,3 +184,54 @@ function loadSelectedTags() {
     const selectedTagsArray = JSON.parse(localStorage.getItem('selectedTags') || '[]');
     selectedTags = new Set(selectedTagsArray);  // Восстанавливаем набор выбранных тегов
 }
+
+// Получение CSRF-токена из куки
+function getCookie(name) {
+    let cookieValue = null;
+    document.cookie.split(';').forEach(cookie => {
+        const [k,v] = cookie.trim().split('=');
+        if (k === name) cookieValue = decodeURIComponent(v);
+    });
+    return cookieValue;
+}
+
+// Функция для сохранения сгенерированного плейлиста на бекенд
+function saveGeneratedPlaylist(tracks) {
+  return fetch('http://127.0.0.1:8000/api/save-playlist/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRFToken': getCookie('csrftoken')
+    },
+    credentials: 'include',
+    body: JSON.stringify({ tracks })
+  })
+  .then(res => {
+    if (!res.ok) throw new Error('Save failed');
+    return res.json();
+  });
+}
+
+// в обработчике кнопки:
+document.getElementById("savePlaylistButton").addEventListener("click", function () {
+  if (hasSaved) {
+    alert("Playlist has already been saved.");
+    return;
+  }
+  if (currentAlbum.length === 0) {
+    alert("No tracks to save!");
+    return;
+  }
+
+  saveGeneratedPlaylist(currentAlbum)
+    .then(data => {
+      alert("Playlist saved!");
+      hasSaved = true;
+      // тот же плейлист БЕЗ СБРОСА
+      displayAlbum(currentAlbum);
+    })
+    .catch(err => {
+      console.error(err);
+      alert("Error saving playlist");
+    });
+});

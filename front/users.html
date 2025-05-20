@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Profile & Playlists</title>
+  <link href="https://fonts.googleapis.com/css2?family=Antic+Didone&family=Castoro+Titling&family=Noto+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/users.css">
+</head>
+
+<body>
+
+  <div class="container">
+    
+    <!-- Окошко профиля -->
+    <aside class="sidebar">
+      <div class="profile">
+        <div class="avatar"></div>
+        <div class="username" id="usernameDisplay"></div>
+      </div>
+
+      <div class="bottom-icons">
+        <a href="index.html" class="icon-btn">
+          <img src="assets/swords2.png" alt="Иконка">
+        </a>
+        <a href="settings.html" class="icon-btn" id="settingsBtn">
+          <img src="assets/helmet.png" alt="Profile settings">
+        </a>
+      </div>
+      
+    </aside>
+
+        <!-- Модальное окно Настроек -->
+    <div id="settingsModal" class="settings-modal hidden">
+      <div class="settings-content">
+        <h2>Settings</h2>
+        <ul>
+          <li><button id="changeAvatarBtn">Change profile picture</button></li>
+          <li><button id="changeNickBtn">Change nickname</button></li>
+          <li><button id="changePasswordBtn">Change password</button></li>
+          <li><button id="logoutBtn">Log out</button></li>
+          <li><button id="deletePlaylistsBtn">Delete playlists</button></li>
+          <li><button id="deleteAccountBtn">Delete account</button></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Основная часть -->
+    <main class="main">
+      <h1 class="main-title"><span>YOUR</span><br>PLAYLISTS</h1>
+      
+      <!-- Блок с песнями/плейлистами -->
+      <div class="song-container">
+        <div class="playlists" id="playlistsContainer"></div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="js/users.js"></script>
+
+</body>
+</html>

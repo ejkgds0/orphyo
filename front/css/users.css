@@ -43,7 +43,7 @@ body {
 }
 
 .username {
-  font-family: 'Castoro Titling', serif;
+  font-family: 'Antic Didone', serif;
   color: #eee;
   font-size: 1.2rem;
   border-bottom: 1px solid #321010;
@@ -55,10 +55,9 @@ body {
 /* Иконки внизу сайдбара */
 .bottom-icons {
   position: relative;
-  height: 100px;        /* разместить кнопки внутри этого блока по высоте */
+  height: 100px;
 }
 
-/* Абсолютное позиционирование кнопок-иконок */
 .icon-btn {
   position: absolute;   /* поверх контента .sidebar */
   bottom: 20px;         /* от низа .sidebar */
@@ -107,7 +106,7 @@ body {
   font-size: clamp(2rem, 5vw, 3.125rem);           /* отзывчивый размер от 2rem до 3.125rem */
   color: #600200;                                  /* тёмно‑красный цвет текста */
   text-shadow: 0 0.25rem 0.25rem rgba(58, 23, 23, 0.5); /* тень под текстом */
-  margin: 0 0 2rem;                                /* убираем верхний отступ, оставляем снизу */
+  margin: 0.5rem 0 2rem;                                /* верхний отступ, нижний */
   line-height: 0.6;                                /* между строками */
 }
 
@@ -120,27 +119,70 @@ body {
 .playlists {
   display: flex;
   gap: 2rem;
-  margin-top: 5rem;
+  margin-top: 3rem;
 }
+
+
+/* ==== Горизонтальная прокрутка плейлистов ==== */
+.song-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  padding-bottom: 1rem;
+  scroll-behavior: smooth;
+}
+
+/* Скрываем стандартный скроллбар (Chrome, Safari) */
+.song-container::-webkit-scrollbar {
+  height: 6px;
+}
+.song-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+.song-container::-webkit-scrollbar-thumb {
+  background: #3a1717;
+  border-radius: 3px;
+}
+
+/* Для Firefox */
+.song-container {
+  scrollbar-width: thin;
+  scrollbar-color: #3a1717 transparent;
+}
+
+/* Flex-контейнер карточек */
+.playlists {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: nowrap;
+}
+
 
 /* ==== Карточка плейлиста ==== */
 
 .card {
-  background-color: #f9f9fb;                /* светлый фон, как у song-container */
-  border: 3px solid #3a1717;               /* толстая бордюр-рамка */
-  border-radius: 11px;                     /* крупные скругления */
-  box-shadow: 4px 4px 8px rgba(58, 23, 23, 0.9); /* глубокая тень */
+  flex: 0 0 auto;
+  width: 250px;
+  height: 550px;
+  background-color: #f9f9fb;
+  border: 3px solid #3a1717;
+  border-radius: 11px;
+  box-shadow: 4px 4px 8px rgba(58, 23, 23, 0.9);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  width: 250px;                            /* фиксированная ширина, как раньше */
-  height: 550px;   
 }
 
 /* Заголовок карточки */
 .card-header {
   height: 50px;
-  background-color: #3a1717;               /* тёмно-бордовый */
+  background-color: #3a1717;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Antic Didone', sans-serif;
+  font-size: 0.9rem;
 }
 
 /* Тело карточки */
@@ -151,13 +193,13 @@ body {
 
   list-style-type: none; /* Убираем маркеры у списка */
   line-height: 1; /* Высота строки (уменьшает/увеличивает расстояние между строками) */
-  letter-spacing: 0.05em; /* Увеличиваем или уменьшаем расстояние между буквами */
+  letter-spacing: 0.05em; /* расстояние между буквами */
   text-align: center; /* Центрируем весь текст в списке */
 }
 
 /* Блок песни */
 .card-body .song-item {
-  font-family: 'Antic Didone', 'Noto Sans', serif;
+  font-family: 'Antic Didone', serif;
   font-size: 15px;
   color: #121212;
   margin-bottom: 5px;
@@ -168,8 +210,14 @@ body {
 
 /* Заголовок песни (название) */
 .card-body .song-item h4 {
+  max-width: 90%;
   margin: 5px 0;
   font-size: 1rem;
+  word-wrap: break-word;   /* переносим слова по границе блока */
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+  text-align: center;
 }
 
 /* Ссылка внутри заголовка */
@@ -186,8 +234,8 @@ body {
 /* Блок с info (исполнитель + длительность) */
 .card-body .song-info {
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  flex-direction: column; /* Размещаем исполнителя и длительность вертикально */
+  align-items: center;    /* Центруем их по горизонтали */
   margin-top: 5px;
 }
 
@@ -195,7 +243,7 @@ body {
 .card-body .song-info p {
   margin: 0 1rem 0 0;
   font-size: 0.9rem;
-  color: #3a1717;
+  color: #121212;
 }
 
 /* Убираем отступ у последнего .song-item */

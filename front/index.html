@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orphyo - Song Generator</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Castoro+Titling&family=Antic+Didone&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 </head>
@@ -14,7 +14,7 @@
 
     <header>
         <a href="login.html" class="icon-button">
-            <img src="swords.png" alt="Иконка">
+            <img src="assets/swords.png" alt="Иконка">
         </a>
         <h1>Orphyo</h1>
         <p class="description">discover your uniquely perfect<br> soundtracks</p>
@@ -37,7 +37,13 @@
         </section>
 
         <div class="generate-container">
-            <a id="generate-playlist" href="playlist.html">Generate playlist</a>   
+            <a id="generate-playlist" href="playlist.html">Generate playlist</a>
+            <script>
+            document.getElementById('generate-playlist').addEventListener('click', () => {
+                // Устанавливаем флаг: при заходе на playlist.html – делать generateAlbum()
+                sessionStorage.setItem('orphyo:shouldGenerate', '1');
+            });
+            </script>
         </div>
     </main>
 
@@ -45,7 +51,7 @@
         <!--<p>&copy; 2024 Orphyo</p>-->
     </footer>
 
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>
