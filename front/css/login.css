@@ -82,6 +82,17 @@ form {
     border-color: white; /* Белая рамка */
 }
 
+/* АВТОЗАПОЛНЕНИЕ */
+#login-email:-webkit-autofill,
+#login-password:-webkit-autofill,
+#signup-username:-webkit-autofill,
+#signup-email:-webkit-autofill,
+#signup-password:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px rgba(58, 23, 23, 0.5) inset !important;
+  color: white !important;
+}
+
+
 /* ==== LOGIN КНОПКА ==== */
 /* Кнопка отправки формы */
 button[type="submit"] {

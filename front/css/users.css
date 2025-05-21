@@ -251,3 +251,89 @@ body {
   margin-bottom: 0;
 }
 
+
+/* ==== Кнопка настроек ==== */
+/* Скрытие/показ модального окна */
+.settings-modal.hidden {
+  display: none;
+}
+
+/* Оверлей по всему экрану */
+.settings-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.3);        /* затемняющий фон */
+  display: flex;
+  align-items: flex-start; /*вертикально*/
+  justify-content: flex-start; /* по горизонтали выравниваем влево */
+  padding-left: 2rem;         /*отступ от левого края экрана */
+  padding-top: 15%;         /*смещение вниз */
+  z-index: 1000;                     /* поверх всего остального */
+}
+
+/* Содержимое модалки */
+.settings-content {
+  background-color: #424242;          /* оттенок серого панели сайдбара */
+  padding: 2rem 2rem;                /* игрик--икс */
+  border-radius: 11px;                /* скруглённые углы */
+  width: 20%;
+  max-width: 90%;
+  min-height: 79%;
+  box-shadow: 0 4px 11px rgba(0,0,0,0.5);
+  color: #eee;
+  text-align: center;
+  position: relative;                 /* для кнопки закрытия */
+}
+
+/* Заголовок */
+.settings-content h2 {
+  font-family: 'Castoro Titling', serif;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #f5f4f1;
+  text-shadow: 0 1px 1px rgba(58,23,23,0.5);
+}
+
+/* Список опций */
+.settings-content ul {
+  background: rgba(255, 255, 255, 0.1);  /* полупрозрачный белый */
+  padding: 1rem 0.5rem;
+  list-style: none;
+  margin: 0;
+  width: 100%;
+  height: 20rem;
+  text-align: center;
+}
+
+/* Отступы между пунктами */
+.settings-content li {
+  margin-bottom: 0.5rem;
+  text-align: center;
+  padding: 0.7rem 0.5rem;
+}
+.settings-content li:last-child {
+  margin-bottom: 0;
+}
+
+/* Кнопки внутри модалки */
+.settings-content button {
+  background: transparent;
+  border: none;
+  font-family: 'Antic Didone', serif;
+  font-size: 1rem;
+  color: #eee;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.settings-content button:hover {
+  color: #600200;
+  /*text-decoration: underline;*/
+}
+
+#settingsBtn {
+  z-index: 1101;
+}

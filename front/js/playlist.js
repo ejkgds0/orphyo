@@ -232,6 +232,6 @@ document.getElementById("savePlaylistButton").addEventListener("click", function
     })
     .catch(err => {
       console.error(err);
-      alert("Error saving playlist");
+      alert("Error saving playlist. Please login first!");
     });
 });

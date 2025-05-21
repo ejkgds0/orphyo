@@ -56,10 +56,10 @@ def api_login(request):
 
 @csrf_exempt
 def api_logout(request):
-    if request.method != 'POST':
-        return JsonResponse({'error': 'Use POST'}, status=405)
-    logout(request)
-    return JsonResponse({'status': 'ok'})
+    if request.method == 'POST':
+        logout(request)
+        return JsonResponse({'message': 'Logged out successfully'})
+    return JsonResponse({'error': 'Invalid request method'}, status=400)
 
 
 @csrf_exempt

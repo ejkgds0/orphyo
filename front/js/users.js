@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Инициализация настройки кнопки настроек
   const settingsBtn = document.getElementById('settingsBtn');
   const settingsModal = document.getElementById('settingsModal');
+
   settingsBtn.addEventListener('click', e => {
     e.preventDefault();
     settingsModal.classList.toggle('hidden');
@@ -115,3 +116,21 @@ function formatDuration(sec) {
   const s = sec % 60;
   return `${m}:${s.toString().padStart(2,'0')}`;
 }
+
+// Выход из аккаунта
+document.getElementById('logoutBtn').addEventListener('click', async () => {
+  try {
+    const res = await fetch('http://127.0.0.1:8000/api/logout/', {
+      method: 'POST',
+      credentials: 'include',
+    });
+
+    if (res.ok) {
+      window.location.href = 'login.html';
+    } else {
+      console.error('Logout failed');
+    }
+  } catch (err) {
+    console.error('Logout error:', err);
+  }
+});

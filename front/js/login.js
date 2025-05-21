@@ -38,8 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = await response.json();
 
       if (response.ok && data.status === 'ok') {
-        alert('Login successful!');
-        window.location.href = 'playlist.html';
+        console.log('Login successful!');
+        window.location.href = 'users.html';
       } else {
         alert('Login error: ' + (data.error || 'Incorrect data'));
       }
