@@ -342,7 +342,9 @@ body {
 
 /* ==== Удаление и отмена HIDDEN ==== */
 .delete-mode-panel {
+  position: absolute;
   display: flex;
+  width: 69%;
   justify-content: space-between;
   margin-bottom: 1rem;
 }
