@@ -10,6 +10,10 @@ from .models import Track, Playlist, PlaylistTrack
 
 from django.contrib.auth.decorators import login_required
 
+from django.views.decorators.http import require_http_methods
+from django.contrib.auth.decorators import login_required
+
+
 User = get_user_model()  # CustomUser
 
 
@@ -135,3 +139,21 @@ def api_my_playlists(request):
             'tracks': tracks
         })
     return JsonResponse({'playlists': data})
+
+
+@csrf_exempt
+@require_http_methods(["DELETE"])
+@login_required
+def api_delete_playlists(request):
+    """
+    Удаляет все плейлисты текущего пользователя с указанными ID.
+    Ожидает JSON: { "ids": [1,2,3] }
+    """
+    try:
+        payload = json.loads(request.body)
+        ids = payload.get("playlist_ids", [])
+        # Удаляем только те, что принадлежат текущему пользователю
+        Playlist.objects.filter(user=request.user, id__in=ids).delete()
+        return JsonResponse({"deleted": ids})
+    except json.JSONDecodeError:
+        return JsonResponse({"error": "Invalid JSON"}, status=400)

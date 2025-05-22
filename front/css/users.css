@@ -122,7 +122,6 @@ body {
   margin-top: 3rem;
 }
 
-
 /* ==== Горизонтальная прокрутка плейлистов ==== */
 .song-container {
   overflow-x: auto;
@@ -171,6 +170,8 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  position: relative;
+
 }
 
 /* Заголовок карточки */
@@ -336,4 +337,66 @@ body {
 
 #settingsBtn {
   z-index: 1101;
+}
+
+
+/* ==== Удаление и отмена HIDDEN ==== */
+.delete-mode-panel {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.delete-control {
+  font-family: 'Antic Didone', serif;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cancel-btn {
+  background-color: #bbb;
+  color: #121212;
+}
+
+.cancel-btn:hover {
+  background-color: #999;
+}
+
+.delete-btn {
+  background-color: #600200;
+  color: #fff;
+}
+
+.delete-btn:hover {
+  background-color: #420101;
+}
+
+/* Крестики */
+.delete-icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.delete-icon:hover {
+  opacity: 1;
+}
+
+.card.selected-for-deletion {
+  border: 3px dashed #600200;
+  opacity: 0.8;
+}
+
+.hidden {
+  display: none !important;
 }

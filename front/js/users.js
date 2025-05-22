@@ -5,10 +5,42 @@ document.addEventListener('DOMContentLoaded', () => {
   // Инициализация настройки кнопки настроек
   const settingsBtn = document.getElementById('settingsBtn');
   const settingsModal = document.getElementById('settingsModal');
+  const deletePlaylistsBtn = document.getElementById('deletePlaylistsBtn'); // ID кнопки "Delete playlists"
+  const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+  const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
 
   settingsBtn.addEventListener('click', e => {
     e.preventDefault();
     settingsModal.classList.toggle('hidden');
+  });
+
+  deletePlaylistsBtn.addEventListener('click', () => {
+    settingsModal.classList.add('hidden');       // Закрываем настройки
+    enterDeleteMode();                           // Включаем режим удаления
+  });
+
+  // Обработчик кнопок CANCEL/ DELETE
+  cancelDeleteBtn.addEventListener('click', () => {
+    console.log('Cancel clicked');
+    exitDeleteMode();
+  });
+
+  confirmDeleteBtn.addEventListener('click', async () => {
+    if (selectedPlaylists.size === 0) return;
+
+    const res = await fetch('http://127.0.0.1:8000/api/delete-playlists/', {
+      method: 'DELETE',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ playlist_ids: Array.from(selectedPlaylists) }),
+    });
+
+    if (res.ok) {
+      exitDeleteMode();
+      await loadMyPlaylists();
+    } else {
+      alert('Error deleting playlists');
+    }
   });
 });
 
@@ -55,6 +87,19 @@ async function loadMyPlaylists() {
       const card = document.createElement('div');
       card.className = 'card';
 
+      // ID плейлиста для последующего использования
+      card.dataset.playlistId = pl.id;
+
+      // Крестик удаления (изначально скрыт)
+      const deleteIcon = document.createElement('img');
+      deleteIcon.src = 'assets/iks.png'; // путь к иконке
+      deleteIcon.className = 'delete-icon hidden';
+      deleteIcon.addEventListener('click', (e) => {
+        e.stopPropagation(); // предотврати всплытие события
+        toggleSelectPlaylist(card);
+      });
+      card.appendChild(deleteIcon);
+
       // Заголовок с датой
       const header = document.createElement('div');
       header.className = 'card-header';
@@ -77,6 +122,7 @@ async function loadMyPlaylists() {
         trackLink.textContent = track.track;
         trackLink.target = '_blank';
         trackLink.className = 'track-link';
+
 
         title.appendChild(trackLink);
         li.appendChild(title);
@@ -134,3 +180,59 @@ document.getElementById('logoutBtn').addEventListener('click', async () => {
     console.error('Logout error:', err);
   }
 });
+
+// Удаление плейлистов, новые переменные
+let deleteMode = false;
+let selectedPlaylists = new Set();
+
+// Функция управления режимом удаления
+// Вход с режим удаления
+function enterDeleteMode() {
+  deleteMode = true;
+  document.getElementById('deleteModePanel').classList.remove('hidden');
+
+  document.querySelectorAll('.card').forEach(card => {
+    let deleteIcon = card.querySelector('.delete-icon');
+
+    // Если иконки ещё нет — создаём и добавляем
+    if (!deleteIcon) {
+      deleteIcon = document.createElement('img');
+      deleteIcon.src = 'assets/iks.png';
+      deleteIcon.className = 'delete-icon';
+      deleteIcon.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleSelectPlaylist(card);
+      });
+      card.appendChild(deleteIcon);
+    }
+
+    // Показываем крестик
+    deleteIcon.classList.remove('hidden');
+  });
+}
+
+// Выход из режима удаления
+function exitDeleteMode() {
+  deleteMode = false;
+  selectedPlaylists.clear();
+  document.getElementById('deleteModePanel').classList.add('hidden');
+
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    card.classList.remove('selected-for-deletion');
+    const icon = card.querySelector('.delete-icon');
+    if (icon) icon.classList.add('hidden');
+  });
+}
+
+// Функция выборки плейлистов
+function toggleSelectPlaylist(card) {
+  card.classList.toggle('selected-for-deletion');
+
+  const id = card.dataset.playlistId;
+  if (card.classList.contains('selected-for-deletion')) {
+    selectedPlaylists.add(id);
+  } else {
+    selectedPlaylists.delete(id);
+  }
+}
