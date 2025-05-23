@@ -17,6 +17,7 @@ from django.contrib.auth.decorators import login_required
 User = get_user_model()  # CustomUser
 
 
+#Регистарция
 @csrf_exempt
 def api_signup(request):
     if request.method != 'POST':
@@ -38,6 +39,7 @@ def api_signup(request):
         return JsonResponse({'error': 'Invalid JSON'}, status=400)
 
 
+# Вход
 @csrf_exempt
 def api_login(request):
     if request.method != 'POST':
@@ -58,6 +60,7 @@ def api_login(request):
         return JsonResponse({'error': 'Invalid JSON'}, status=400)
 
 
+# Выход
 @csrf_exempt
 def api_logout(request):
     if request.method == 'POST':
@@ -66,6 +69,7 @@ def api_logout(request):
     return JsonResponse({'error': 'Invalid request method'}, status=400)
 
 
+# Сохранение плейлиста
 @csrf_exempt
 def save_playlist(request):
     if request.method != 'POST':
@@ -113,13 +117,15 @@ def save_playlist(request):
 @csrf_exempt
 def api_user_status(request):
     if request.user.is_authenticated:
+        avatar_url = request.build_absolute_uri(request.user.avatar.url) if request.user.avatar else None
         return JsonResponse({
             'authenticated': True,
             'username': request.user.username,
+            'avatar_url': avatar_url
         })
-    else:
-        return JsonResponse({'authenticated': False})
-    
+    return JsonResponse({'authenticated': False})
+
+# Сохраненные плейлисты  
 @login_required
 def api_my_playlists(request):
     user = request.user
@@ -141,6 +147,7 @@ def api_my_playlists(request):
     return JsonResponse({'playlists': data})
 
 
+# Удаление плейлистов
 @csrf_exempt
 @require_http_methods(["DELETE"])
 @login_required
@@ -157,3 +164,61 @@ def api_delete_playlists(request):
         return JsonResponse({"deleted": ids})
     except json.JSONDecodeError:
         return JsonResponse({"error": "Invalid JSON"}, status=400)
+    
+
+# Смена ника
+@csrf_exempt
+@require_http_methods(["POST"])
+@login_required
+def api_change_username(request):
+    try:
+        data = json.loads(request.body)
+        new_nick = data.get("username", "").strip()
+        if not new_nick:
+            return JsonResponse({"error": "Username cannot be empty"}, status=400)
+        if User.objects.filter(username=new_nick).exclude(id=request.user.id).exists():
+            return JsonResponse({"error": "Username already taken"}, status=400)
+        request.user.username = new_nick
+        request.user.save()
+        return JsonResponse({"status": "ok", "username": new_nick})
+    except json.JSONDecodeError:
+        return JsonResponse({"error": "Invalid JSON"}, status=400)
+
+# Смена пароля
+@csrf_exempt
+@require_http_methods(["POST"])
+@login_required
+def api_change_password(request):
+    try:
+        data = json.loads(request.body)
+        old = data.get("old_password", "")
+        new  = data.get("new_password", "")
+        if not request.user.check_password(old):
+            return JsonResponse({"error": "Wrong current password"}, status=400)
+        if len(new) < 6:
+            return JsonResponse({"error": "New password too short"}, status=400)
+        request.user.set_password(new)
+        request.user.save()
+        # разлогиним, чтобы пользователь заново вошел
+        logout(request)
+        return JsonResponse({"status": "ok"})
+    except json.JSONDecodeError:
+        return JsonResponse({"error": "Invalid JSON"}, status=400)
+
+# Смена аватара
+@csrf_exempt
+@require_http_methods(["POST"])
+@login_required
+def api_change_avatar(request):
+    avatar = request.FILES.get("avatar")
+    if not avatar:
+        return JsonResponse({"error": "No file uploaded"}, status=400)
+    if request.user.avatar:
+        request.user.avatar.delete(save=False)
+    request.user.avatar = avatar
+    request.user.save()
+    # Здесь точно должно быть:
+    return JsonResponse({
+        "status": "ok",
+        "avatar_url": request.user.avatar.url
+    })

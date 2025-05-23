@@ -37,9 +37,21 @@ body {
 .avatar {
   width: 80px;
   height: 80px;
-  background-color: #121212;
+  background-color: #121212;      /* пока что фон-фолбэк */
   border-radius: 50%;
   margin: 0 auto 1rem;
+  overflow: hidden;               /* отсекаем всё, что за пределами круга */
+  
+  /* добавляем свойства фонового изображения */
+  background-size: cover;
+  background-position: center center;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .username {
@@ -401,4 +413,158 @@ body {
 
 .hidden {
   display: none !important;
+}
+
+
+/* ==== Модальное окно настроек ==== */
+/* Стили для загрузки аватара */
+.file-upload-wrapper {
+  position: relative;
+  margin: 2rem 0;
+  border: 2px dashed #3A1717;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  background: rgba(255,255,255,0.9);
+  transition: all 0.3s ease;
+}
+
+.file-upload-wrapper:hover {
+  border-color: #600200;
+  background: rgba(245, 244, 241, 0.95);
+}
+
+.file-input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.file-text-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.file-main-text {
+  font-family: 'Antic Didone', sans-serif;
+  color: #3A1717;
+  font-size: 1.2rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.file-hint-text {
+  font-family: sans-serif;
+  color: #424242;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.file-preview {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: block;
+  margin: 1.5rem auto 0;
+  object-fit: cover;
+  border: 2px solid #3A1717;
+}
+
+/* Состояния при наведении */
+.file-upload-wrapper:hover .file-main-text {
+  color: #600200;
+}
+
+/* Состояние когда файл выбран */
+.file-selected .file-main-text {
+  color: #121212;
+}
+
+/* Оверлей всей модалки */
+.action-modal {
+  position: fixed;
+  inset: 0;                      /* top:0; right:0; bottom:0; left:0 */
+  background: rgba(18, 18, 18, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;                 /* над всем остальным */
+}
+
+/* Скрытие по умолчанию */
+.action-modal.hidden {
+  display: none !important;
+}
+
+/* Окно внутри оверлея */
+.action-modal__window {
+  background: #3a1717;
+  opacity: 0.96;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  border-radius: 11px;
+  width: 90%;
+  max-width: 400px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Заголовок модалки */
+.action-modal__title {
+  margin: 0 0 1rem;
+  color: #f5f4f1;
+  font-family: 'Castoro Titling', serif;
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+/* Основная часть (контент) */
+.action-modal__body {
+  flex: 1;
+  color: #eee;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Футер с кнопками */
+.action-modal__footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Общий стиль для кнопок модалки */
+.action-modal__btn {
+  padding: 0.5rem 1rem;
+  font-family: 'Antic Didone', serif;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+/* Кнопка Cancel */
+.action-modal__btn.cancel {
+  background: #bbb;
+  color: #121212;
+}
+.action-modal__btn.cancel:hover {
+  background: #999;
+}
+
+/* Кнопка Save */
+.action-modal__btn.save {
+  background: #600200;
+  color: #fff;
+}
+.action-modal__btn.save:hover {
+  background: #420101;
 }

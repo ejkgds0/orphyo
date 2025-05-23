@@ -42,7 +42,60 @@ document.addEventListener('DOMContentLoaded', () => {
       alert('Error deleting playlists');
     }
   });
+
+  // Модалка настроек
+  const actionModal    = document.getElementById('actionModal');
+  const modalTitle     = actionModal.querySelector('.action-modal__title');
+  const modalBody      = actionModal.querySelector('.action-modal__body');
+  const modalCancelBtn = document.getElementById('modalCancelBtn');
+  const modalSaveBtn   = document.getElementById('modalSaveBtn');
+
+    function openActionModal(title, renderBodyFn, onSaveFn) {
+    // закрыть settings
+    settingsModal.classList.add('hidden');
+
+    // заголовок и контент
+    modalTitle.textContent = title;
+    modalBody.innerHTML = '';
+    renderBodyFn(modalBody);
+    modalSaveBtn.disabled = true;
+
+    // найдём инпут внутри modalBody
+    const input = modalBody.querySelector('input');
+    if (input) {
+      input.addEventListener('input', () => {
+        modalSaveBtn.disabled = !input.value.trim();
+      });
+    }
+
+    // показать модалку
+    actionModal.classList.remove('hidden');
+
+    // кнопка Cancel
+    modalCancelBtn.onclick = () => {
+      actionModal.classList.add('hidden');
+    };
+    // кнопка Save
+    modalSaveBtn.onclick = async (event) => {
+      event.preventDefault();
+      await onSaveFn();
+      actionModal.classList.add('hidden');
+    };
+  }
+
+  // Привязываем три кнопки в Settings к модалке:
+  document.getElementById('changeNickBtn').addEventListener('click', () => {
+    openActionModal('Change nickname', renderNicknameForm, submitNicknameChange);
+  });
+  document.getElementById('changePasswordBtn').addEventListener('click', () => {
+    openActionModal('Change password', renderPasswordForm, submitPasswordChange);
+  });
+  document.getElementById('changeAvatarBtn').addEventListener('click', () => {
+    openActionModal('Change profile picture', renderAvatarForm, submitAvatarChange);
+  });
+
 });
+
 
 // Функция использования никнейма
 async function initUserProfile() {
@@ -52,10 +105,13 @@ async function initUserProfile() {
     });
     const data = await res.json();
     if (data.authenticated) {
-      // Вставляем username в профиль
       document.getElementById('usernameDisplay').textContent = data.username;
+      // Обновляем аватар
+      const avatarDiv = document.querySelector('.avatar');
+      if (data.avatar_url) {
+        avatarDiv.style.backgroundImage = `url(${data.avatar_url}?t=${Date.now()})`;
+      }
     } else {
-      // Если не залогинен — перенаправляем на логин
       window.location.href = 'login.html';
     }
   } catch (err) {
@@ -181,11 +237,165 @@ document.getElementById('logoutBtn').addEventListener('click', async () => {
   }
 });
 
+
+// ========== Функции для модал. окна настроек ==========
+
+// Смена ника
+function renderNicknameForm(container) {
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.placeholder = 'New nickname';
+  input.id = 'newNicknameInput';
+  input.style.fontFamily = "Antic Didone";
+  input.style.width = '100%';
+  input.style.padding = '0.5rem';
+  container.appendChild(input);
+}
+
+async function submitNicknameChange() {
+  const newNick = document.getElementById('newNicknameInput').value.trim();
+  if (!newNick) {
+    alert('Please enter a nickname.');
+    return;
+  }
+  const res = await fetch('http://127.0.0.1:8000/api/change-username/', {
+    method: 'POST',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username: newNick }),
+  });
+  if (res.ok) {
+    document.getElementById('usernameDisplay').textContent = newNick;
+  } else {
+    alert('Error changing nickname');
+  }
+}
+
+// Смена пароля
+function renderPasswordForm(container) {
+  const cur = document.createElement('input');
+  cur.type = 'password';
+  cur.placeholder = 'Current password';
+  cur.id = 'currentPassword';
+  cur.style.fontFamily = "Antic Didone";
+  cur.style.width = '100%';
+  cur.style.padding = '0.5rem';
+  cur.style.marginBottom = '0.5rem';
+
+  const neu = document.createElement('input');
+  neu.type = 'password';
+  neu.placeholder = 'New password';
+  neu.id = 'newPassword';
+  neu.style.fontFamily = "Antic Didone";
+  neu.style.width = '100%';
+  neu.style.padding = '0.5rem';
+
+  container.append(cur, neu);
+}
+
+async function submitPasswordChange() {
+  const current = document.getElementById('currentPassword').value;
+  const newPass = document.getElementById('newPassword').value;
+  if (!current || !newPass) {
+    alert('Fill both fields.');
+    return;
+  }
+  const res = await fetch('http://127.0.0.1:8000/api/change-password/', {
+    method: 'POST',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ old_password: current, new_password: newPass }),
+  });
+  if (!res.ok) {
+    alert('Error changing password');
+  }
+}
+
+// Смена аватара
+function renderAvatarForm(container) {
+  // Создаем элементы с классами
+  const wrapper = document.createElement('div');
+  wrapper.className = 'file-upload-wrapper';
+  
+  const input = document.createElement('input');
+  input.className = 'file-input';
+  input.type = 'file';
+  input.accept = 'image/*';
+  input.id = 'avatarFileInput';
+
+  const textContent = document.createElement('div');
+  textContent.className = 'file-text-content';
+
+  const mainText = document.createElement('span');
+  mainText.className = 'file-main-text';
+  mainText.textContent = 'CHOOSE FILE';
+
+  const hint = document.createElement('span');
+  hint.className = 'file-hint-text';
+  hint.textContent = 'Click to select profile pic';
+
+  const preview = document.createElement('img');
+  preview.className = 'file-preview';
+  preview.id = 'avatarPreview';
+
+  // Собираем структуру
+  textContent.appendChild(mainText);
+  textContent.appendChild(hint);
+  wrapper.appendChild(textContent);
+  wrapper.appendChild(input);
+  container.append(wrapper, preview);
+
+  // Обработчики событий
+  input.addEventListener('change', () => {
+    if (input.files && input.files[0]) {
+      preview.src = URL.createObjectURL(input.files[0]);
+      mainText.textContent = 'SELECTED: ' + input.files[0].name;
+      wrapper.classList.add('file-selected');
+      hint.textContent = 'Click to change selection';
+    }
+  });
+}
+
+
+async function submitAvatarChange() {
+  const fileInput = document.getElementById('avatarFileInput');
+  if (!fileInput.files.length) {
+    alert('Please select a file.');
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append('avatar', fileInput.files[0]);
+
+  const res = await fetch('http://127.0.0.1:8000/api/change-avatar/', {
+    method: 'POST',
+    credentials: 'include',
+    body: formData,
+  });
+  if (!res.ok) {
+    alert('Error uploading avatar');
+    return;
+  }
+
+  const data = await res.json();
+  const avatarUrl = data.avatar_url;  // "/media/avatars/photo.jpg"
+  const fullUrl = `http://127.0.0.1:8000${avatarUrl}?t=${Date.now()}`;
+
+  // Вместо innerHTML — напрямую в background
+  const avatarDiv = document.querySelector('.avatar');
+  avatarDiv.style.backgroundImage = `url('${fullUrl}?t=${Date.now()}')`;
+
+  // Обновляем превью внутри модалки, если нужно
+  const preview = document.getElementById('avatarPreview');
+  if (preview) preview.src = fullUrl + '?t=' + Date.now();
+}
+
+
+// ========== Функция управления режимом удаления ==========
 // Удаление плейлистов, новые переменные
 let deleteMode = false;
 let selectedPlaylists = new Set();
 
-// Функция управления режимом удаления
 // Вход с режим удаления
 function enterDeleteMode() {
   deleteMode = true;
@@ -236,3 +446,5 @@ function toggleSelectPlaylist(card) {
     selectedPlaylists.delete(id);
   }
 }
+
+
