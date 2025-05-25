@@ -12,4 +12,5 @@ urlpatterns = [
     path('change-username/',   views.api_change_username, name='api_change_username'),
     path('change-password/',   views.api_change_password, name='api_change_password'),
     path('change-avatar/',     views.api_change_avatar,   name='api_change_avatar'),
+    path('delete-account/', views.api_delete_account, name='api_delete_account'),
 ]

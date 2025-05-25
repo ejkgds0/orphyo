@@ -416,8 +416,8 @@ body {
 }
 
 
-/* ==== Модальное окно настроек ==== */
-/* Стили для загрузки аватара */
+/* ==== Загрузка фото профиля ==== */
+
 .file-upload-wrapper {
   position: relative;
   margin: 2rem 0;
@@ -567,4 +567,80 @@ body {
 }
 .action-modal__btn.save:hover {
   background: #420101;
+}
+
+
+/* ==== Загрузка фото профиля ==== */
+/* Базовые стили для модалок */
+.modal {
+  position: fixed;
+  inset: 0;                     /* топ:0; прав:0; низ:0; лево:0 */
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.modal.hidden {
+  display: none !important;
+}
+
+.modal-content {
+  background: rgba(245, 244, 241, 0.96);
+  padding: 1.5rem;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 320px;
+  text-align: center;
+  font-family: 'Antic Didone', serif;
+}
+
+.modal-content p {
+  margin-bottom: 1rem;
+}
+
+/* Кнопки внутри модалок */
+.modal-buttons {
+  display: flex;
+  justify-content: space-around;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.modal-buttons button {
+  flex: 1;
+  padding: 0.5rem;
+  border: none;
+  background-color: #600200;
+
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-family: 'Antic Didone', serif;
+}
+
+.modal-buttons button:hover {
+  background-color: #600200;
+}
+
+/* Обратная связь при ошибке */
+.feedback {
+  color: #d32f2f;
+  margin-top: 0.75rem;
+  font-style: italic;
+}
+
+#deleteConfirmInput::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  font-family: 'Antic Didone', serif;
+}
+#deleteConfirmInput::-moz-placeholder { /* Firefox 19+ */
+  font-family: 'Antic Didone', serif;
+}
+#deleteConfirmInput:-ms-input-placeholder { /* IE 10+ */
+  font-family: 'Antic Didone', serif;
+}
+#deleteConfirmInput:-moz-placeholder { /* Firefox 18- */
+  font-family: 'Antic Didone', serif;
 }

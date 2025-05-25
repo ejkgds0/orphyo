@@ -94,6 +94,75 @@ document.addEventListener('DOMContentLoaded', () => {
     openActionModal('Change profile picture', renderAvatarForm, submitAvatarChange);
   });
 
+
+  // Удаление аккаунта
+  const deleteAccountBtn      = document.getElementById('deleteAccountBtn');
+  const confirmModal          = document.getElementById('confirmDeleteModal');
+  const finalModal            = document.getElementById('finalDeleteModal');
+  const deleteYesBtn          = document.getElementById('deleteYesBtn');
+  const deleteNoBtn           = document.getElementById('deleteNoBtn');
+  const confirmFinalBtn       = document.getElementById('confirmDeleteFinalBtn');
+  const cancelFinalBtn        = document.getElementById('cancelDeleteFinalBtn');
+  const deleteInput           = document.getElementById('deleteConfirmInput');
+  const deleteFeedback        = document.getElementById('deleteFeedback');
+  const CONFIRM_PHRASE        = 'delete my account';
+
+  
+  // 1) Первое окошко подтверждения
+  deleteAccountBtn.addEventListener('click', () => {
+    settingsModal.classList.add('hidden');
+    confirmModal.classList.remove('hidden');
+  });
+
+  // 2) No
+  deleteNoBtn.addEventListener('click', () => {
+    confirmModal.classList.add('hidden');
+    settingsModal.classList.add('hidden');
+  });
+
+  // 3) Yes --> открывается второе
+  deleteYesBtn.addEventListener('click', () => {
+    confirmModal.classList.add('hidden');
+    // сбросить старые значения
+    deleteInput.value = '';
+    deleteFeedback.classList.add('hidden');
+    finalModal.classList.remove('hidden');
+    deleteInput.focus();
+  });
+
+  // 4) Второе окошко — Cancel
+  cancelFinalBtn.addEventListener('click', () => {
+    finalModal.classList.add('hidden');
+    deleteInput.value = '';
+    deleteFeedback.classList.add('hidden');
+  });
+
+  // 5) Второе окошко — Confirm
+  confirmFinalBtn.addEventListener('click', async () => {
+    const val = deleteInput.value.trim();
+    if (val !== CONFIRM_PHRASE) {
+      // неправильная фраза
+      deleteFeedback.classList.remove('hidden');
+      return;
+    }
+
+    try {
+      const res = await fetch('http://127.0.0.1:8000/api/delete-account/', {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ confirm: true })
+      });
+      if (res.ok) {
+        // аккаунт удален — редирект 
+        window.location.href = 'login.html';
+      } else {
+        throw new Error('Delete failed');
+      }
+    } catch (err) {
+      deleteFeedback.classList.remove('hidden');
+    }
+  });
 });
 
 

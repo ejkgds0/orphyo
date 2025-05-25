@@ -78,6 +78,30 @@
     </div>
   </div>
 
+  <!--  Подтверждение удаления аккаунта -->
+  <div id="confirmDeleteModal" class="modal hidden">
+    <div class="modal-content">
+      <p>Are you sure you want to delete your account?</p>
+      <div class="modal-buttons">
+        <button id="deleteNoBtn">No</button>
+        <button id="deleteYesBtn">Yes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ПОдтверждающая фраза -->
+  <div id="finalDeleteModal" class="modal hidden">
+    <div class="modal-content">
+      <p>Please type: <strong>delete my account</strong> to confirm</p>
+      <input type="text" id="deleteConfirmInput" placeholder="Type here...">
+      <div class="modal-buttons">
+        <button id="cancelDeleteFinalBtn">Cancel</button>
+        <button id="confirmDeleteFinalBtn">Confirm</button>
+      </div>
+      <p id="deleteFeedback" class="feedback hidden">Maybe try again :)</p>
+    </div>
+  </div>
+
   <script src="js/users.js"></script>
 
 </body>

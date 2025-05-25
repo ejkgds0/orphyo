@@ -222,3 +222,16 @@ def api_change_avatar(request):
         "status": "ok",
         "avatar_url": request.user.avatar.url
     })
+
+# Удаление аккаунта
+@csrf_exempt
+@login_required
+@require_http_methods(['POST'])
+def api_delete_account(request):
+    data = json.loads(request.body)
+    if data.get('confirm'):
+        user = request.user
+        logout(request)
+        user.delete()
+        return JsonResponse({'status':'deleted'})
+    return JsonResponse({'error':'Not confirmed'}, status=400)
